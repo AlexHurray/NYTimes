@@ -15,8 +15,8 @@ import butterknife.OnClick;
 public class SecondActivity extends AppCompatActivity {
 
     private static final String KEY_MESSAGE = "KEY_MESSAGE";
-    private static final String FIELD_TO = "andr.academy.msk@gmail.com";
-    private static final String FIELD_SUBJECT = "Hello, Android Academy MSK!";
+    private static final String FIELD_TO = "ermolaenkoalex@gmail.com";
+    private static final String FIELD_SUBJECT = "Hello, Alex!";
 
     @BindView(R.id.tv_message)
     TextView mLabel;
@@ -48,7 +48,7 @@ public class SecondActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, FIELD_SUBJECT);
         intent.putExtra(Intent.EXTRA_TEXT, emailText);
         if (intent.resolveActivity(getPackageManager()) == null) {
-            Toast.makeText(SecondActivity.this, R.string.warning_no_mail_app, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.warning_no_mail_app, Toast.LENGTH_LONG).show();
             return;
         }
 
