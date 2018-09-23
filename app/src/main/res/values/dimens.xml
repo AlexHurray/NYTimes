@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_dim">300dp</dimen>
+    <dimen name="text_second_activity">24sp</dimen>
+    <dimen name="standart_padding">8dp</dimen>
+    <dimen name="icon_size">28dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="small_margin_val">8dp</dimen>
+    <dimen name="big_margin_val">42dp</dimen>
+    <dimen name="splitter_size">1dp</dimen>
+</resources>

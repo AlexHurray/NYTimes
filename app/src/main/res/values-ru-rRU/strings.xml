@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ермолаенко Александр</string>
+    <string name="send_message">ОТПРАВИТЬ СООБЩЕНИЕ</string>
+    <string name="enter_message">Введите сообщение...</string>
+    <string name="summary">Сотрудник компании Нанософт. В настоящий момент пытаюсь получить опыт в Android-разработке</string>
+    <string name="title1">МГТУ им.Баумана</string>
+    <string name="title2">Инженер-программист в области САПР. Команда nanoCAD</string>
+    <string name="title3">Игрок в бадминтон</string>
+
+    <string name="warning_string_length">Пожалуйста введите что-нибудь!</string>
+    <string name="warning_no_mail_app">На устройстве нет ни одного приложения для отправки почты!</string>
+    <string name="btn_email_text">отправить на почту</string>
+    <string name="copyright">© 2018 Ермолаенко Александр</string>
+</resources>

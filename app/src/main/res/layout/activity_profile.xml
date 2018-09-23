@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        tools:context=".ProfileActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_dim"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:id="@+id/mainView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/standart_padding">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/standard_view_style"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/study"
+                    tools:ignore="ContentDescription"
+                    style="@style/icon_style"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title1"
+                    style="@style/text_title_style"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/standard_view_style"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/account_box"
+                    tools:ignore="ContentDescription"
+                    style="@style/icon_style"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title2"
+                    style="@style/text_title_style"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                style="@style/standard_view_style"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:src="@drawable/badminton"
+                    tools:ignore="ContentDescription"
+                    style="@style/icon_style"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title3"
+                    style="@style/text_title_style"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/splitter_size"
+                android:background="@android:color/holo_red_dark"
+                style="@style/standard_view_style"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/summary"
+                style="@style/standard_text_style"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/splitter_size"
+                android:background="@android:color/holo_red_dark"
+                style="@style/standard_view_style"/>
+
+            <EditText
+                android:id="@+id/et_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_message"
+                android:inputType="text"
+                style="@style/standard_text_style"/>
+
+            <TextView
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/send_message"
+                android:textColor="@android:color/holo_red_dark"
+                style="@style/standard_button_style"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            style="@style/standard_view_style">
+
+            <ImageView
+                android:src="@drawable/twitter"
+                tools:ignore="ContentDescription"
+                style="@style/icon_contact_style"/>
+
+            <ImageView
+                android:src="@drawable/telegram"
+                tools:ignore="ContentDescription"
+                style="@style/icon_contact_style"/>
+
+            <ImageView
+                android:src="@drawable/skype"
+                tools:ignore="ContentDescription"
+                style="@style/icon_contact_style"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
