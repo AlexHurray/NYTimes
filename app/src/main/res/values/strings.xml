@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Ermolaenko Alexandr</string>
     <string name="send_message">SEND MESSAGE</string>
-    <string name="enter_message">Enter a message...</string>
+    <string name="enter_message">Enter a message…</string>
     <string name="summary">Member of nanoSoft company. Currently look for new experience in Android development </string>
     <string name="title1">BMSTU</string>
     <string name="title2">CAD Software Ingineer, nanoCAD team</string>
@@ -9,6 +9,7 @@
 
     <string name="warning_string_length">Please enter string!</string>
     <string name="warning_no_mail_app">There is no app for SENDTO action!</string>
+    <string name="warning_no_browser_app">There is no app for ACTION_VIEW action!</string>
     <string name="btn_email_text">email</string>
     <string name="copyright">© 2018 Ermolaenko Alexandr</string>
 </resources>

@@ -1,13 +1,12 @@
 package com.example.ermolaenkoalex.lesson2_dz;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,11 +18,15 @@ import butterknife.OnClick;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    @BindView(R.id.et_message)
-    EditText mMessage;
+    private static final String URL_VK = "https://www.vk.com/ermolaenkoalex";
+    private static final String URL_FB = "https://www.facebook.com/alexandr.ermolaenko";
+    private static final String URL_TWITTER = "https://twitter.com/realDonaldTrump";
 
-    @BindView(R.id.mainView)
-    LinearLayout mMainView;
+    @BindView(R.id.et_message)
+    EditText message;
+
+    @BindView(R.id.main_view)
+    LinearLayout mainView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,37 +39,62 @@ public class ProfileActivity extends AppCompatActivity {
         copyright.setText(R.string.copyright);
         applyLayoutMargins4TextView(copyright);
 
-        mMainView.addView(copyright);
+        mainView.addView(copyright);
     }
 
     @OnClick(R.id.btn_next)
-    void onButtonNext(){
-        String message = mMessage.getText().toString();
-        if (message.length() > 0){
-            SecondActivity.start(this, message);
-        } else{
+    void onButtonNext() {
+        String messageText = message.getText().toString();
+        if (messageText.isEmpty()) {
             Toast.makeText(this, R.string.warning_string_length, Toast.LENGTH_LONG).show();
+        } else {
+            SecondActivity.start(this, messageText);
         }
     }
 
-    private void applyLayoutMargins4TextView(@NonNull TextView textview){
+    @OnClick(R.id.icon_vk)
+    void openVK() {
+        openLink(URL_VK);
+    }
+
+    @OnClick(R.id.icon_fb)
+    void openTelegram() {
+        openLink(URL_FB);
+    }
+
+    @OnClick(R.id.icon_twitter)
+    void openTwitter() {
+        openLink(URL_TWITTER);
+    }
+
+    private void openLink(final String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        if (intent.resolveActivity(getPackageManager()) == null) {
+            Toast.makeText(this, R.string.warning_no_browser_app, Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        startActivity(intent);
+    }
+
+    private void applyLayoutMargins4TextView(@NonNull TextView textview) {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        TypedArray ta = obtainStyledAttributes(R.style.standard_text_style, R.styleable.standard_view_style_table);
-        int bottom = ta.getDimensionPixelSize(R.styleable.standard_view_style_table_android_layout_marginBottom, 0);
-        int top = ta.getDimensionPixelSize(R.styleable.standard_view_style_table_android_layout_marginTop, 0);
-        int start = ta.getDimensionPixelSize(R.styleable.standard_view_style_table_android_layout_marginStart, 0);
-        int end = ta.getDimensionPixelSize(R.styleable.standard_view_style_table_android_layout_marginEnd, 0);
+        TypedArray ta = obtainStyledAttributes(R.style.StandardTextStyle, R.styleable.StandardViewStyleTable);
+        int bottom = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginBottom, 0);
+        int top = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginTop, 0);
+        int start = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginStart, 0);
+        int end = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginEnd, 0);
 
         params.setMargins(0, top, 0, bottom);
         params.setMarginStart(start);
         params.setMarginEnd(end);
 
         if (Build.VERSION.SDK_INT < 23) {
-            textview.setTextAppearance(this, R.style.standard_text_style);
+            textview.setTextAppearance(this, R.style.StandardTextStyle);
         } else {
-            textview.setTextAppearance(R.style.standard_text_style);
+            textview.setTextAppearance(R.style.StandardTextStyle);
         }
 
         ta.recycle();

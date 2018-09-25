@@ -8,37 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="icon_style">
+    <style name="IconStyle">
         <item name="android:layout_width">@dimen/icon_size</item>
         <item name="android:layout_height">@dimen/icon_size</item>
         <item name="android:scaleType">centerInside</item>
     </style>
 
-    <style name="icon_contact_style" parent="icon_style">
-        <item name="android:layout_margin">@dimen/small_margin_val</item>
+    <style name="IconContactStyle" parent="IconStyle">
+        <item name="android:layout_margin">@dimen/spacing_small</item>
     </style>
 
-    <style name="standard_view_style">
-        <item name="android:layout_marginBottom">@dimen/small_margin_val</item>
-        <item name="android:layout_marginEnd">@dimen/small_margin_val</item>
-        <item name="android:layout_marginStart">@dimen/big_margin_val</item>
-        <item name="android:layout_marginTop">@dimen/small_margin_val</item>
+    <style name="StandardViewStyle">
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_big</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
     </style>
 
-    <style name="standard_text_style" parent="standard_view_style">
+    <style name="StandardTextStyle" parent="StandardViewStyle">
         <item name="android:textSize">@dimen/text_size</item>
     </style>
 
-    <style name="standard_button_style" parent="standard_text_style">
+    <style name="standardButtonStyle" parent="StandardTextStyle">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="text_title_style">
-        <item name="android:layout_marginStart">@dimen/small_margin_val</item>
+    <style name="TextTitleStyle">
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
         <item name="android:textSize">@dimen/text_size</item>
     </style>
 
-    <declare-styleable name="standard_view_style_table" >
+    <declare-styleable name="StandardViewStyleTable">
         <attr name="android:layout_marginBottom" />
         <attr name="android:layout_marginEnd" />
         <attr name="android:layout_marginStart" />

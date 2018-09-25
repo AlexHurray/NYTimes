@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/image_dim"
+            android:layout_width="@dimen/image_size"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
@@ -19,11 +18,11 @@
             tools:ignore="ContentDescription" />
 
         <LinearLayout
-            android:id="@+id/mainView"
+            android:id="@+id/main_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/standart_padding">
+            android:padding="@dimen/spacing_standard">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,82 +31,75 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    style="@style/StandardViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    style="@style/standard_view_style"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
+                        style="@style/IconStyle"
                         android:src="@drawable/study"
-                        tools:ignore="ContentDescription"
-                        style="@style/icon_style"/>
+                        tools:ignore="ContentDescription" />
 
                     <TextView
+                        style="@style/TextTitleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/title1"
-                        style="@style/text_title_style"/>
+                        android:text="@string/title1" />
                 </LinearLayout>
+
                 <LinearLayout
-                    style="@style/standard_view_style"
+                    style="@style/StandardViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        style="@style/icon_style"
+                        style="@style/IconStyle"
                         android:src="@drawable/account_box"
                         tools:ignore="ContentDescription" />
 
                     <TextView
-                        style="@style/text_title_style"
+                        style="@style/TextTitleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/title2" />
                 </LinearLayout>
 
                 <LinearLayout
-                    style="@style/standard_view_style"
+                    style="@style/StandardViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        style="@style/icon_style"
+                        style="@style/IconStyle"
                         android:src="@drawable/badminton"
                         tools:ignore="ContentDescription" />
 
                     <TextView
-                        style="@style/text_title_style"
+                        style="@style/TextTitleStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/title3" />
                 </LinearLayout>
 
-                <View
-                    style="@style/standard_view_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/splitter_size"
-                    android:background="@android:color/holo_red_dark" />
+                <include layout="@layout/divider" />
 
                 <TextView
-                    style="@style/standard_text_style"
+                    style="@style/StandardTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/summary" />
 
-                <View
-                    style="@style/standard_view_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/splitter_size"
-                    android:background="@android:color/holo_red_dark" />
+                <include layout="@layout/divider" />
 
                 <EditText
                     android:id="@+id/et_message"
-                    style="@style/standard_text_style"
+                    style="@style/StandardTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/enter_message"
@@ -115,7 +107,7 @@
 
                 <TextView
                     android:id="@+id/btn_next"
-                    style="@style/standard_button_style"
+                    android:textAppearance="@style/standardButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -125,26 +117,29 @@
             </LinearLayout>
 
             <LinearLayout
+                style="@style/StandardViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                style="@style/standard_view_style"
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/icon_twitter"
+                    style="@style/IconContactStyle"
                     android:src="@drawable/twitter"
-                    tools:ignore="ContentDescription"
-                    style="@style/icon_contact_style"/>
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:src="@drawable/telegram"
-                    tools:ignore="ContentDescription"
-                    style="@style/icon_contact_style"/>
+                    android:id="@+id/icon_fb"
+                    style="@style/IconContactStyle"
+                    android:src="@drawable/fb"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
-                    android:src="@drawable/skype"
-                    tools:ignore="ContentDescription"
-                    style="@style/icon_contact_style"/>
+                    android:id="@+id/icon_vk"
+                    style="@style/IconContactStyle"
+                    android:src="@drawable/vk"
+                    tools:ignore="ContentDescription" />
             </LinearLayout>
 
         </LinearLayout>

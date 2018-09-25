@@ -10,9 +10,9 @@
         android:id="@+id/tv_message"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textSize="@dimen/text_second_activity"
+        android:layout_weight="1"
         android:gravity="center"
-        android:layout_weight="1"/>
+        android:textSize="@dimen/text_second_activity_size" />
 
     <Button
         android:id="@+id/btn_next"

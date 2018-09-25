@@ -19,7 +19,7 @@ public class SecondActivity extends AppCompatActivity {
     private static final String FIELD_SUBJECT = "Hello, Alex!";
 
     @BindView(R.id.tv_message)
-    TextView mLabel;
+    TextView label;
 
     public static void start(Activity activity, String text) {
         Intent startIntent = new Intent(activity, SecondActivity.class);
@@ -36,12 +36,12 @@ public class SecondActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         final String emailText = getIntent().getStringExtra(KEY_MESSAGE);
-        mLabel.setText(emailText);
+        label.setText(emailText);
     }
 
     @OnClick(R.id.btn_next)
-    void sendEmail(){
-        final String emailText = mLabel.getText().toString();
+    void sendEmail() {
+        final String emailText = label.getText().toString();
 
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{FIELD_TO});
