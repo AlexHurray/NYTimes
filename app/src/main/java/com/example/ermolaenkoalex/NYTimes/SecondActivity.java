@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.lesson2_dz;
+package com.example.ermolaenkoalex.NYTimes;
 
 import android.app.Activity;
 import android.content.Intent;

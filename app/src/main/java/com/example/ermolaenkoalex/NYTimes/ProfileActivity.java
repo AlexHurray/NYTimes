@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.lesson2_dz;
+package com.example.ermolaenkoalex.NYTimes;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
