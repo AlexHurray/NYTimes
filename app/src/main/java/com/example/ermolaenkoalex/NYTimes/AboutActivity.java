@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProfileActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     private static final String URL_VK = "https://www.vk.com/ermolaenkoalex";
     private static final String URL_FB = "https://www.facebook.com/alexandr.ermolaenko";
@@ -48,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (messageText.isEmpty()) {
             Toast.makeText(this, R.string.warning_string_length, Toast.LENGTH_LONG).show();
         } else {
-            SecondActivity.start(this, messageText);
+            SendMailActivity.start(this, messageText);
         }
     }
 

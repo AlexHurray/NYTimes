@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SecondActivity extends AppCompatActivity {
+public class SendMailActivity extends AppCompatActivity {
 
     private static final String KEY_MESSAGE = "KEY_MESSAGE";
     private static final String FIELD_TO = "ermolaenkoalex@gmail.com";
@@ -22,7 +22,7 @@ public class SecondActivity extends AppCompatActivity {
     TextView label;
 
     public static void start(Activity activity, String text) {
-        Intent startIntent = new Intent(activity, SecondActivity.class);
+        Intent startIntent = new Intent(activity, SendMailActivity.class);
         startIntent.putExtra(KEY_MESSAGE, text);
         activity.startActivity(startIntent);
     }
