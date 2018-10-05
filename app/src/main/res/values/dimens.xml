@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_size">300dp</dimen>
+    <dimen name="text_second_activity_size">24sp</dimen>
+    <dimen name="spacing_standard">8dp</dimen>
+    <dimen name="icon_size">28dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_big">42dp</dimen>
+    <dimen name="divider_size">1dp</dimen>
+</resources>

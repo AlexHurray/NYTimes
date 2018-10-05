@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="IconStyle">
+        <item name="android:layout_width">@dimen/icon_size</item>
+        <item name="android:layout_height">@dimen/icon_size</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="IconContactStyle" parent="IconStyle">
+        <item name="android:layout_margin">@dimen/spacing_small</item>
+    </style>
+
+    <style name="StandardViewStyle">
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_big</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+    </style>
+
+    <style name="StandardTextStyle" parent="StandardViewStyle">
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="standardButtonStyle" parent="StandardTextStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextTitleStyle">
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <declare-styleable name="StandardViewStyleTable">
+        <attr name="android:layout_marginBottom" />
+        <attr name="android:layout_marginEnd" />
+        <attr name="android:layout_marginStart" />
+        <attr name="android:layout_marginTop" />
+    </declare-styleable>
+
+</resources>
