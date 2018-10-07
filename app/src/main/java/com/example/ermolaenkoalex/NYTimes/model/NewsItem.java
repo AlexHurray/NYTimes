@@ -1,8 +1,9 @@
-package com.example.ermolaenkoalex.NYTimes.mock;
+package com.example.ermolaenkoalex.NYTimes.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class NewsItem {
+public class NewsItem implements Serializable {
     private final String title;
     private final String imageUrl;
     private final Category category;

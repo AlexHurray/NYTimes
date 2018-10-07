@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NewsListActivity"
+            android:name=".ui.newslist.NewsListActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,9 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SendMailActivity" />
-        <activity android:name=".AboutActivity"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".ui.about.SendMailActivity" />
+        <activity
+            android:name=".ui.about.AboutActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ui.newsdetails.NewsDetailsActivity"/>
     </application>
 
 </manifest>
