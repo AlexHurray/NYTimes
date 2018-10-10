@@ -7,13 +7,6 @@
     android:padding="@dimen/spacing_standard">
 
     <TextView
-        android:id="@+id/tv_title"
-        style="@style/NewsItemTitleStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Tourist filmed sitting on 5m-long crocodile" />
-
-    <TextView
         android:id="@+id/tv_date"
         style="@style/NewsItemDateStyle"
         android:layout_width="match_parent"

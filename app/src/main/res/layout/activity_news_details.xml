@@ -10,6 +10,14 @@
         android:layout_height="0dp"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/NewsItemTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_standard"
+            tools:text="Tourist filmed sitting on 5m-long crocodile" />
+
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="match_parent"
@@ -19,7 +27,7 @@
             tools:ignore="ContentDescription"
             tools:src="@tools:sample/avatars" />
 
-        <include layout="@layout/news_details_content" />
+        <include layout="@layout/content_news_details" />
 
     </LinearLayout>
 

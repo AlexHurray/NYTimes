@@ -43,33 +43,33 @@
     </style>
 
     <style name="NewsItemCategoryStyle" parent="NewsItemViewStyle">
-        <item name="android:textSize">@dimen/text_category_size</item>
+        <item name="android:textSize">@dimen/text_size_category</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:maxLines">1</item>
     </style>
 
     <style name="NewsItemTitleStyle" parent="NewsItemViewStyle">
-        <item name="android:textSize">@dimen/text_title_size</item>
+        <item name="android:textSize">@dimen/text_size_title</item>
         <item name="android:textStyle">bold</item>
         <item name="android:maxLines">2</item>
     </style>
 
     <style name="NewsItemPreviewStyle" parent="NewsItemViewStyle">
-        <item name="android:textSize">@dimen/text_preview_size</item>
+        <item name="android:textSize">@dimen/text_size_preview</item>
         <item name="android:maxLines">4</item>
     </style>
 
     <style name="NewsItemFullTextStyle" parent="NewsItemViewStyle">
-        <item name="android:textSize">@dimen/text_full_text_size</item>
+        <item name="android:textSize">@dimen/text_size_full_text</item>
     </style>
 
     <style name="NewsItemDateStyle" parent="NewsItemViewStyle">
-        <item name="android:textSize">@dimen/text_date_size</item>
+        <item name="android:textSize">@dimen/text_size_date</item>
     </style>
 
     <style name="ImagePreviewStyle">
-        <item name="android:layout_width">@dimen/image_preview_size</item>
-        <item name="android:layout_height">@dimen/image_preview_size</item>
+        <item name="android:layout_width">@dimen/image_size_preview</item>
+        <item name="android:layout_height">@dimen/image_size_preview</item>
         <item name="android:layout_margin">@dimen/spacing_small</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:scaleType">centerCrop</item>

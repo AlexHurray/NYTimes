@@ -9,4 +9,4 @@
     android:paddingStart="@dimen/spacing_small"
     android:paddingTop="@dimen/spacing_small"
     tools:context=".ui.newslist.NewsListActivity"
-    tools:listitem="@layout/news_item" />
+    tools:listitem="@layout/item_news" />

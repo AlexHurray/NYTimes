@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     tools:context=".ui.newsdetails.NewsDetailsActivity">
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/avatars"
-        tools:ignore="ContentDescription" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/spacing_standard"
+        android:paddingStart="@dimen/spacing_standard">
 
-        <include layout="@layout/news_details_content"/>
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/NewsItemTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_standard"
+            tools:text="Tourist filmed sitting on 5m-long crocodile" />
 
-    </ScrollView>
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_size"
+            android:layout_marginEnd="@dimen/spacing_standard"
+            android:layout_marginStart="@dimen/spacing_standard"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
 
-</LinearLayout>
+        <include layout="@layout/content_news_details" />
+
+    </LinearLayout>
+
+</ScrollView>

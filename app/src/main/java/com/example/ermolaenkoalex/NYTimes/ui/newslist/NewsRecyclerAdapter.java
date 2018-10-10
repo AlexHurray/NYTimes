@@ -11,16 +11,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.ermolaenkoalex.NYTimes.R;
-import com.example.ermolaenkoalex.NYTimes.events.NewsItemEvent;
 import com.example.ermolaenkoalex.NYTimes.model.NewsItem;
 import com.example.ermolaenkoalex.NYTimes.utils.StringUtils;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
@@ -31,15 +28,20 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     private final LayoutInflater inflater;
 
+    @Nullable
+    private final OnItemClickListener clickListener;
+
     @NonNull
     private final Context context;
 
     @NonNull
     private final RequestManager imageLoader;
 
-    public NewsRecyclerAdapter(@NonNull Context context, @NonNull List<NewsItem> newsItems) {
+    public NewsRecyclerAdapter(@NonNull Context context, @NonNull List<NewsItem> newsItems,
+                               @Nullable OnItemClickListener clickListener) {
         this.newsItems = newsItems;
-        inflater = LayoutInflater.from(context);
+        this.inflater = LayoutInflater.from(context);
+        this.clickListener = clickListener;
         this.context = context;
 
         RequestOptions imageOption = new RequestOptions()
@@ -52,9 +54,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(
-                inflater.inflate(getLayoutResByViewType(viewType), parent, false)
-        );
+        return new ViewHolder(inflater.inflate(viewType, parent, false), clickListener);
     }
 
     @Override
@@ -69,11 +69,15 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public int getItemViewType(int position) {
-        return newsItems.get(position).getCategory().getId();
+        if (newsItems.get(position).getCategory().getId() == 2) {
+            return R.layout.item_news_criminal;
+        }
+
+        return R.layout.item_news;
     }
 
-    private int getLayoutResByViewType(int viewType) {
-        return (viewType == 2) ? R.layout.news_item_criminal : R.layout.news_item;
+    public interface OnItemClickListener {
+        void onItemClick(NewsItem newsItem);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,7 +87,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         private final TextView previewView;
         private final TextView dateView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, @Nullable OnItemClickListener listener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_preview);
             categoryView = itemView.findViewById(R.id.tv_category);
@@ -93,8 +97,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION) {
-                    EventBus.getDefault().post(new NewsItemEvent(newsItems.get(position)));
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(newsItems.get(position));
                 }
             });
         }
