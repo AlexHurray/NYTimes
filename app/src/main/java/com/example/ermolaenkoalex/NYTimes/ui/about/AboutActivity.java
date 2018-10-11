@@ -27,21 +27,12 @@ public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.et_message)
     EditText message;
 
-    @BindView(R.id.main_view)
-    LinearLayout mainView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
         ButterKnife.bind(this);
-
-        TextView copyright = new TextView(this);
-        copyright.setText(R.string.copyright);
-        applyLayoutMargins4TextView(copyright);
-
-        mainView.addView(copyright);
     }
 
     @OnClick(R.id.btn_next)
