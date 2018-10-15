@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.newslist;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.ermolaenkoalex.NYTimes.mock.DataUtils;
-import com.example.ermolaenkoalex.NYTimes.ui.about.AboutActivity;
-import com.example.ermolaenkoalex.NYTimes.R;
-import com.example.ermolaenkoalex.NYTimes.ui.newsdetails.NewsDetailsActivity;
+import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
+import com.example.ermolaenkoalex.nytimes.mock.DataUtils;
+import com.example.ermolaenkoalex.nytimes.ui.about.AboutActivity;
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.ui.newsdetails.NewsDetailsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,9 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NewsListActivity extends AppCompatActivity {
-
-    private static final int NUM_COL_LAND = 2;
+public class NewsListActivity extends BaseActivity {
 
     private final NewsRecyclerAdapter.OnItemClickListener clickListener = newsItem
             -> NewsDetailsActivity.start(this, newsItem);
@@ -33,13 +32,16 @@ public class NewsListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(new NewsRecyclerAdapter(this, DataUtils.generateNews(), clickListener));
 
-        recyclerView.setLayoutManager(isPortraitOrientation()
+        final boolean isPortrait = isPortraitOrientation();
+        final int NUM_COL_LAND = 2;
+
+        recyclerView.setLayoutManager(isPortrait
                 ? new LinearLayoutManager(this)
                 : new GridLayoutManager(this, NUM_COL_LAND));
 
         recyclerView.addItemDecoration(new ItemDecorationNewsList(
                 getResources().getDimensionPixelSize(R.dimen.spacing_small),
-                isPortraitOrientation() ? 1 : NUM_COL_LAND));
+                isPortrait ? 1 : NUM_COL_LAND));
     }
 
     @Override

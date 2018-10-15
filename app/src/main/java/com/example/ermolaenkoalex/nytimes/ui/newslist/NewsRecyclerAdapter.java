@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.newslist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.ermolaenkoalex.NYTimes.R;
-import com.example.ermolaenkoalex.NYTimes.model.NewsItem;
-import com.example.ermolaenkoalex.NYTimes.utils.StringUtils;
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.model.NewsItem;
+import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
 import java.util.List;
 
@@ -37,12 +37,12 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     private final RequestManager imageLoader;
 
-    public NewsRecyclerAdapter(@NonNull Context context, @NonNull List<NewsItem> newsItems,
-                               @Nullable OnItemClickListener clickListener) {
-        this.newsItems = newsItems;
-        this.inflater = LayoutInflater.from(context);
-        this.clickListener = clickListener;
+    NewsRecyclerAdapter(@NonNull Context context, @NonNull List<NewsItem> newsItems,
+                        @Nullable OnItemClickListener clickListener) {
         this.context = context;
+        this.newsItems = newsItems;
+        this.clickListener = clickListener;
+        this.inflater = LayoutInflater.from(context);
 
         RequestOptions imageOption = new RequestOptions()
                 .placeholder(R.drawable.placeholder_image)
@@ -69,7 +69,9 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public int getItemViewType(int position) {
-        if (newsItems.get(position).getCategory().getId() == 2) {
+        final int CRIMINAL_CATEGORY_ID = 2;
+
+        if (newsItems.get(position).getCategory().getId() == CRIMINAL_CATEGORY_ID) {
             return R.layout.item_news_criminal;
         }
 
@@ -87,7 +89,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         private final TextView previewView;
         private final TextView dateView;
 
-        public ViewHolder(@NonNull View itemView, @Nullable OnItemClickListener listener) {
+        ViewHolder(@NonNull View itemView, @Nullable OnItemClickListener listener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.iv_preview);
             categoryView = itemView.findViewById(R.id.tv_category);
@@ -103,7 +105,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
             });
         }
 
-        public void bind(@NonNull NewsItem newsItem) {
+        void bind(@NonNull NewsItem newsItem) {
             // Fill views with our data
             imageLoader.load(newsItem.getImageUrl()).into(imageView);
             categoryView.setText(newsItem.getCategory().getName());

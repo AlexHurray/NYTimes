@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:paddingEnd="@dimen/spacing_small"
-    android:paddingStart="@dimen/spacing_small"
-    android:paddingTop="@dimen/spacing_small"
+    android:padding="@dimen/spacing_small"
     tools:context=".ui.newslist.NewsListActivity"
     tools:listitem="@layout/item_news" />

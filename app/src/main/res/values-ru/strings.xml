@@ -14,4 +14,9 @@
     <string name="btn_email_text">отправить на почту</string>
     <string name="copyright">© 2018 Ермолаенко Александр</string>
     <string name="menu_about">Про автора</string>
+
+    <string name="desc_avatar">Фото профиля</string>
+    <string name="desc_vk">ВКонтакте</string>
+    <string name="desc_fb">Фэйсбук</string>
+    <string name="desc_twitter">Твиттер</string>
 </resources>

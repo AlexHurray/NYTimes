@@ -12,11 +12,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/image_size"
+            android:layout_height="@dimen/size_image"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/desc_avatar"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/profile" />
 
         <LinearLayout
             android:id="@+id/main_view"
@@ -26,62 +26,26 @@
             android:orientation="vertical"
             android:padding="@dimen/spacing_standard">
 
-            <LinearLayout
-                style="@style/StandardViewStyle"
+            <TextView
+                style="@style/TextTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
+                android:drawableStart="@drawable/study"
+                android:text="@string/title1" />
 
-                <ImageView
-                    style="@style/IconStyle"
-                    android:src="@drawable/study"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    style="@style/TextTitleStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title1" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/StandardViewStyle"
+            <TextView
+                style="@style/TextTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
+                android:drawableStart="@drawable/account_box"
+                android:text="@string/title2" />
 
-                <ImageView
-                    style="@style/IconStyle"
-                    android:src="@drawable/account_box"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    style="@style/TextTitleStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title2" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/StandardViewStyle"
+            <TextView
+                style="@style/TextTitleStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:ignore="UseCompoundDrawables">
-
-                <ImageView
-                    style="@style/IconStyle"
-                    android:src="@drawable/badminton"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    style="@style/TextTitleStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title3" />
-            </LinearLayout>
+                android:drawableStart="@drawable/badminton"
+                android:text="@string/title3" />
 
             <include layout="@layout/divider" />
 
@@ -103,7 +67,7 @@
 
             <TextView
                 android:id="@+id/btn_next"
-                style="@style/standardButtonStyle"
+                style="@style/StandardButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -122,20 +86,20 @@
             <ImageView
                 android:id="@+id/icon_twitter"
                 style="@style/IconContactStyle"
-                android:src="@drawable/twitter"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/desc_twitter"
+                android:src="@drawable/twitter" />
 
             <ImageView
                 android:id="@+id/icon_fb"
                 style="@style/IconContactStyle"
-                android:src="@drawable/fb"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/desc_fb"
+                android:src="@drawable/fb" />
 
             <ImageView
                 android:id="@+id/icon_vk"
                 style="@style/IconContactStyle"
-                android:src="@drawable/vk"
-                tools:ignore="ContentDescription" />
+                android:contentDescription="@string/desc_vk"
+                android:src="@drawable/vk" />
         </LinearLayout>
 
     </LinearLayout>

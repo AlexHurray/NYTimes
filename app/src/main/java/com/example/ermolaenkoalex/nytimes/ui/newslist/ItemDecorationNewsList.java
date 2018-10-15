@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.newslist;
 
 import android.graphics.Rect;
 import android.view.View;
@@ -11,7 +11,7 @@ public class ItemDecorationNewsList extends RecyclerView.ItemDecoration {
 
     private int sizeGridSpacingPx;
     private int gridSize;
-    private boolean mNeedLeftSpacing = false;
+    private boolean needLeftSpacing = false;
 
     public ItemDecorationNewsList(int gridSpacingPx, int gridSize) {
         this.sizeGridSpacingPx = gridSpacingPx;
@@ -31,13 +31,13 @@ public class ItemDecorationNewsList extends RecyclerView.ItemDecoration {
         if (itemPosition % gridSize == 0) {
             outRect.left = 0;
             outRect.right = padding;
-            mNeedLeftSpacing = true;
+            needLeftSpacing = true;
         } else if ((itemPosition + 1) % gridSize == 0) {
-            mNeedLeftSpacing = false;
+            needLeftSpacing = false;
             outRect.right = 0;
             outRect.left = padding;
-        } else if (mNeedLeftSpacing) {
-            mNeedLeftSpacing = false;
+        } else if (needLeftSpacing) {
+            needLeftSpacing = false;
             outRect.left = sizeGridSpacingPx - padding;
             if ((itemPosition + 2) % gridSize == 0) {
                 outRect.right = sizeGridSpacingPx - padding;
@@ -45,11 +45,11 @@ public class ItemDecorationNewsList extends RecyclerView.ItemDecoration {
                 outRect.right = sizeGridSpacingPx / 2;
             }
         } else if ((itemPosition + 2) % gridSize == 0) {
-            mNeedLeftSpacing = false;
+            needLeftSpacing = false;
             outRect.left = sizeGridSpacingPx / 2;
             outRect.right = sizeGridSpacingPx - padding;
         } else {
-            mNeedLeftSpacing = false;
+            needLeftSpacing = false;
             outRect.left = sizeGridSpacingPx / 2;
             outRect.right = sizeGridSpacingPx / 2;
         }

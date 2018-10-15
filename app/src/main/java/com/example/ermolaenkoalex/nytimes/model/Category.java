@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.model;
+package com.example.ermolaenkoalex.nytimes.model;
 
 import java.io.Serializable;
 

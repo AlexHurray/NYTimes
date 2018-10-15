@@ -1,7 +1,7 @@
-package com.example.ermolaenkoalex.NYTimes.mock;
+package com.example.ermolaenkoalex.nytimes.mock;
 
-import com.example.ermolaenkoalex.NYTimes.model.Category;
-import com.example.ermolaenkoalex.NYTimes.model.NewsItem;
+import com.example.ermolaenkoalex.nytimes.model.Category;
+import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
 import java.util.ArrayList;
 import java.util.Date;

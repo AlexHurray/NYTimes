@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.ui.about;
+package com.example.ermolaenkoalex.nytimes.ui.about;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -10,7 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ermolaenkoalex.NYTimes.R;
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
 
     private static final String URL_VK = "https://www.vk.com/ermolaenkoalex";
     private static final String URL_FB = "https://www.facebook.com/alexandr.ermolaenko";
@@ -31,8 +32,6 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        ButterKnife.bind(this);
     }
 
     @OnClick(R.id.btn_next)
@@ -68,30 +67,5 @@ public class AboutActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
-    }
-
-    private void applyLayoutMargins4TextView(@NonNull TextView textview) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        TypedArray ta = obtainStyledAttributes(R.style.StandardTextStyle, R.styleable.StandardViewStyleTable);
-        int bottom = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginBottom, 0);
-        int top = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginTop, 0);
-        int start = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginStart, 0);
-        int end = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginEnd, 0);
-
-        params.setMargins(0, top, 0, bottom);
-        params.setMarginStart(start);
-        params.setMarginEnd(end);
-
-        if (Build.VERSION.SDK_INT < 23) {
-            textview.setTextAppearance(this, R.style.StandardTextStyle);
-        } else {
-            textview.setTextAppearance(R.style.StandardTextStyle);
-        }
-
-        ta.recycle();
-
-        textview.setLayoutParams(params);
     }
 }

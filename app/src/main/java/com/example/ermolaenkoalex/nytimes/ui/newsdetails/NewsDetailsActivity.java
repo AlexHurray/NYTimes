@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.NYTimes.ui.newsdetails;
+package com.example.ermolaenkoalex.nytimes.ui.newsdetails;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,9 +8,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.ermolaenkoalex.NYTimes.R;
-import com.example.ermolaenkoalex.NYTimes.model.NewsItem;
-import com.example.ermolaenkoalex.NYTimes.utils.StringUtils;
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
+import com.example.ermolaenkoalex.nytimes.model.NewsItem;
+import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsDetailsActivity extends AppCompatActivity {
+public class NewsDetailsActivity extends BaseActivity {
 
     private static final String KEY_NEWS_ITEM = "KEY_NEWS_ITEM";
 
@@ -44,8 +45,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details);
-
-        ButterKnife.bind(this);
 
         NewsItem newsItem = (NewsItem) getIntent().getSerializableExtra(KEY_NEWS_ITEM);
 

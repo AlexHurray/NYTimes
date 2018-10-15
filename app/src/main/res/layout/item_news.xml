@@ -2,15 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_news_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="@dimen/card_radius">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
         android:padding="@dimen/spacing_standard">
 
         <TextView
@@ -57,7 +55,7 @@
             style="@style/ImagePreviewStyle"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/tv_title"
-            tools:ignore="ContentDescription"
+            android:contentDescription="@null"
             tools:src="@tools:sample/cities" />
 
     </RelativeLayout>

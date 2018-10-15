@@ -13,4 +13,9 @@
     <string name="btn_email_text">email</string>
     <string name="copyright">© 2018 Ermolaenko Alexandr</string>
     <string name="menu_about">About</string>
+
+    <string name="desc_avatar">Profile foto</string>
+    <string name="desc_vk">VKontakte</string>
+    <string name="desc_fb">Facebook</string>
+    <string name="desc_twitter">Twitter</string>
 </resources>
