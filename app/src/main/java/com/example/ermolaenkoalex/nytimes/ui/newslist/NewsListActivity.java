@@ -58,8 +58,4 @@ public class NewsListActivity extends BaseActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    //private boolean isPortraitOrientation() {
-    //    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
-    //}
 }
