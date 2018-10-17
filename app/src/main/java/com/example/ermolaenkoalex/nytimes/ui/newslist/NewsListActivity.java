@@ -32,16 +32,14 @@ public class NewsListActivity extends BaseActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(new NewsRecyclerAdapter(this, DataUtils.generateNews(), clickListener));
 
-        final boolean isPortrait = isPortraitOrientation();
-        final int NUM_COL_LAND = 2;
+        int numCol = getResources().getInteger(R.integer.landscape_news_columns_count);
 
-        recyclerView.setLayoutManager(isPortrait
+        recyclerView.setLayoutManager(numCol == 1
                 ? new LinearLayoutManager(this)
-                : new GridLayoutManager(this, NUM_COL_LAND));
+                : new GridLayoutManager(this, numCol));
 
         recyclerView.addItemDecoration(new ItemDecorationNewsList(
-                getResources().getDimensionPixelSize(R.dimen.spacing_small),
-                isPortrait ? 1 : NUM_COL_LAND));
+                getResources().getDimensionPixelSize(R.dimen.spacing_small), numCol));
     }
 
     @Override
@@ -61,7 +59,7 @@ public class NewsListActivity extends BaseActivity {
         }
     }
 
-    private boolean isPortraitOrientation() {
-        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
-    }
+    //private boolean isPortraitOrientation() {
+    //    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    //}
 }
