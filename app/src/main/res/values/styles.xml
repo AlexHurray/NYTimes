@@ -15,27 +15,64 @@
     </style>
 
     <style name="IconContactStyle" parent="IconStyle">
-        <item name="android:layout_margin">@dimen/spacing_small</item>
+        <item name="android:layout_margin">@dimen/spacing_standard</item>
     </style>
 
     <style name="StandardViewStyle">
-        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
-        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_standard</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_standard</item>
         <item name="android:layout_marginStart">@dimen/spacing_big</item>
-        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:layout_marginTop">@dimen/spacing_standard</item>
     </style>
 
     <style name="StandardTextStyle" parent="StandardViewStyle">
         <item name="android:textSize">@dimen/text_size</item>
     </style>
 
-    <style name="standardButtonStyle" parent="StandardTextStyle">
+    <style name="StandardButtonStyle" parent="StandardTextStyle">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextTitleStyle">
-        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+    <style name="TextTitleStyle" parent="StandardViewStyle">
+        <item name="android:drawablePadding">@dimen/spacing_standard</item>
         <item name="android:textSize">@dimen/text_size</item>
+    </style>
+
+    <style name="NewsItemViewStyle">
+        <item name="android:layout_margin">@dimen/spacing_small</item>
+    </style>
+
+    <style name="NewsItemCategoryStyle" parent="NewsItemViewStyle">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="NewsItemTitleStyle" parent="NewsItemViewStyle">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="NewsItemPreviewStyle" parent="NewsItemViewStyle">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:maxLines">4</item>
+    </style>
+
+    <style name="NewsItemFullTextStyle" parent="NewsItemViewStyle">
+        <item name="android:textSize">@dimen/text_size_body</item>
+    </style>
+
+    <style name="NewsItemDateStyle" parent="NewsItemViewStyle">
+        <item name="android:textSize">@dimen/text_size_date</item>
+    </style>
+
+    <style name="ImagePreviewStyle">
+        <item name="android:layout_width">@dimen/size_image_preview</item>
+        <item name="android:layout_height">@dimen/size_image_preview</item>
+        <item name="android:layout_margin">@dimen/spacing_small</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <declare-styleable name="StandardViewStyleTable">

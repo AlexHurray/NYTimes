@@ -1,22 +1,25 @@
-package com.example.ermolaenkoalex.NYTimes;
+package com.example.ermolaenkoalex.nytimes.ui.about;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProfileActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity {
 
     private static final String URL_VK = "https://www.vk.com/ermolaenkoalex";
     private static final String URL_FB = "https://www.facebook.com/alexandr.ermolaenko";
@@ -25,21 +28,10 @@ public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.et_message)
     EditText message;
 
-    @BindView(R.id.main_view)
-    LinearLayout mainView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
-        ButterKnife.bind(this);
-
-        TextView copyright = new TextView(this);
-        copyright.setText(R.string.copyright);
-        applyLayoutMargins4TextView(copyright);
-
-        mainView.addView(copyright);
     }
 
     @OnClick(R.id.btn_next)
@@ -48,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (messageText.isEmpty()) {
             Toast.makeText(this, R.string.warning_string_length, Toast.LENGTH_LONG).show();
         } else {
-            SecondActivity.start(this, messageText);
+            SendMailActivity.start(this, messageText);
         }
     }
 
@@ -75,30 +67,5 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
-    }
-
-    private void applyLayoutMargins4TextView(@NonNull TextView textview) {
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        TypedArray ta = obtainStyledAttributes(R.style.StandardTextStyle, R.styleable.StandardViewStyleTable);
-        int bottom = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginBottom, 0);
-        int top = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginTop, 0);
-        int start = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginStart, 0);
-        int end = ta.getDimensionPixelSize(R.styleable.StandardViewStyleTable_android_layout_marginEnd, 0);
-
-        params.setMargins(0, top, 0, bottom);
-        params.setMarginStart(start);
-        params.setMarginEnd(end);
-
-        if (Build.VERSION.SDK_INT < 23) {
-            textview.setTextAppearance(this, R.style.StandardTextStyle);
-        } else {
-            textview.setTextAppearance(R.style.StandardTextStyle);
-        }
-
-        ta.recycle();
-
-        textview.setLayoutParams(params);
     }
 }

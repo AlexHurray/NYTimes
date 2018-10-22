@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,12 +9,12 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="@dimen/image_size"
+            android:layout_width="@dimen/size_image"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
+            android:contentDescription="@string/desc_avatar"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile"
-            tools:ignore="ContentDescription" />
+            android:src="@drawable/profile" />
 
         <LinearLayout
             android:id="@+id/main_view"
@@ -24,97 +23,54 @@
             android:orientation="vertical"
             android:padding="@dimen/spacing_standard">
 
-            <LinearLayout
+            <TextView
+                style="@style/TextTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/study"
+                android:text="@string/title1" />
+
+            <TextView
+                style="@style/TextTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/account_box"
+                android:text="@string/title2" />
+
+            <TextView
+                style="@style/TextTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/badminton"
+                android:text="@string/title3" />
+
+            <include layout="@layout/divider" />
+
+            <TextView
+                style="@style/StandardTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/summary" />
+
+            <include layout="@layout/divider" />
+
+            <EditText
+                android:id="@+id/et_message"
+                style="@style/StandardTextStyle"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_message"
+                android:inputType="text" />
 
-                <LinearLayout
-                    style="@style/StandardViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
+            <TextView
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/send_message"
+                android:textAppearance="@style/StandardButtonStyle"
+                android:textColor="@android:color/holo_red_dark" />
 
-                    <ImageView
-                        style="@style/IconStyle"
-                        android:src="@drawable/study"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/TextTitleStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title1" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/StandardViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        style="@style/IconStyle"
-                        android:src="@drawable/account_box"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/TextTitleStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title2" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/StandardViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <ImageView
-                        style="@style/IconStyle"
-                        android:src="@drawable/badminton"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/TextTitleStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/title3" />
-                </LinearLayout>
-
-                <include layout="@layout/divider" />
-
-                <TextView
-                    style="@style/StandardTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/summary" />
-
-                <include layout="@layout/divider" />
-
-                <EditText
-                    android:id="@+id/et_message"
-                    style="@style/StandardTextStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/enter_message"
-                    android:inputType="text" />
-
-                <TextView
-                    android:id="@+id/btn_next"
-                    android:textAppearance="@style/standardButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="@string/send_message"
-                    android:textColor="@android:color/holo_red_dark" />
-
-            </LinearLayout>
 
             <LinearLayout
                 style="@style/StandardViewStyle"
@@ -126,20 +82,20 @@
                 <ImageView
                     android:id="@+id/icon_twitter"
                     style="@style/IconContactStyle"
-                    android:src="@drawable/twitter"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/desc_twitter"
+                    android:src="@drawable/twitter" />
 
                 <ImageView
                     android:id="@+id/icon_fb"
                     style="@style/IconContactStyle"
-                    android:src="@drawable/fb"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/desc_fb"
+                    android:src="@drawable/fb" />
 
                 <ImageView
                     android:id="@+id/icon_vk"
                     style="@style/IconContactStyle"
-                    android:src="@drawable/vk"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/desc_vk"
+                    android:src="@drawable/vk" />
             </LinearLayout>
 
         </LinearLayout>

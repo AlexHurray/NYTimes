@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ермолаенко Александр</string>
+    <string name="app_name">NYTimes</string>
     <string name="send_message">ОТПРАВИТЬ СООБЩЕНИЕ</string>
     <string name="enter_message">Введите сообщение…</string>
     <string name="summary">Сотрудник компании Нанософт. В настоящий момент пытаюсь получить опыт в Android-разработке</string>
@@ -13,4 +13,10 @@
     <string name="warning_no_browser_app">На устройстве нет ни одного браузера!</string>
     <string name="btn_email_text">отправить на почту</string>
     <string name="copyright">© 2018 Ермолаенко Александр</string>
+    <string name="menu_about">Про автора</string>
+
+    <string name="desc_avatar">Фото профиля</string>
+    <string name="desc_vk">ВКонтакте</string>
+    <string name="desc_fb">Фэйсбук</string>
+    <string name="desc_twitter">Твиттер</string>
 </resources>

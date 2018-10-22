@@ -1,18 +1,21 @@
-package com.example.ermolaenkoalex.NYTimes;
+package com.example.ermolaenkoalex.nytimes.ui.about;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SecondActivity extends AppCompatActivity {
+public class SendMailActivity extends BaseActivity {
 
     private static final String KEY_MESSAGE = "KEY_MESSAGE";
     private static final String FIELD_TO = "ermolaenkoalex@gmail.com";
@@ -22,7 +25,7 @@ public class SecondActivity extends AppCompatActivity {
     TextView label;
 
     public static void start(Activity activity, String text) {
-        Intent startIntent = new Intent(activity, SecondActivity.class);
+        Intent startIntent = new Intent(activity, SendMailActivity.class);
         startIntent.putExtra(KEY_MESSAGE, text);
         activity.startActivity(startIntent);
     }
@@ -32,8 +35,6 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
-        ButterKnife.bind(this);
 
         final String emailText = getIntent().getStringExtra(KEY_MESSAGE);
         label.setText(emailText);
