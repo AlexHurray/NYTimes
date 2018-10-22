@@ -22,7 +22,7 @@ public class ItemDecorationNewsList extends RecyclerView.ItemDecoration {
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         int frameWidth = (int) ((parent.getWidth() - (float) sizeGridSpacingPx * (gridSize - 1)) / gridSize);
         int padding = parent.getWidth() / gridSize - frameWidth;
-        int itemPosition = ((RecyclerView.LayoutParams) view.getLayoutParams()).getViewAdapterPosition();
+        int itemPosition = parent.getChildLayoutPosition(view);
         if (itemPosition < gridSize) {
             outRect.top = 0;
         } else {

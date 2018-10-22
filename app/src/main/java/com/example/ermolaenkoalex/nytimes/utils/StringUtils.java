@@ -22,4 +22,8 @@ public class StringUtils {
         return DateUtils.getRelativeDateTimeString(context, date.getTime(),
                 MINUTE_IN_MILLIS, WEEK_IN_MILLIS, flags);
     }
+
+    private StringUtils() {
+        throw new AssertionError("No instances");
+    }
 }

@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.ermolaenkoalex.nytimes.R;
+import com.example.ermolaenkoalex.nytimes.model.Category;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
@@ -69,9 +70,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public int getItemViewType(int position) {
-        final int CRIMINAL_CATEGORY_ID = 2;
-
-        if (newsItems.get(position).getCategory().getId() == CRIMINAL_CATEGORY_ID) {
+        if (newsItems.get(position).getCategory().getId() == Category.CRIMINAL_ID) {
             return R.layout.item_news_criminal;
         }
 

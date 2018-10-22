@@ -32,7 +32,7 @@ public class NewsListActivity extends BaseActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setAdapter(new NewsRecyclerAdapter(this, DataUtils.generateNews(), clickListener));
 
-        int numCol = getResources().getInteger(R.integer.landscape_news_columns_count);
+        int numCol = getResources().getInteger(R.integer.news_columns_count);
 
         recyclerView.setLayoutManager(numCol == 1
                 ? new LinearLayoutManager(this)
