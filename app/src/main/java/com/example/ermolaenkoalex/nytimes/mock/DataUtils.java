@@ -1,5 +1,7 @@
 package com.example.ermolaenkoalex.nytimes.mock;
 
+import android.util.Log;
+
 import com.example.ermolaenkoalex.nytimes.model.Category;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
@@ -9,6 +11,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DataUtils {
+
+    private static final int DELAY_TIME = 4000;
+    private static final String LOG_TAG = "DataUtils";
 
     public static List<NewsItem> generateNews() {
         final Category darwinAwards = new Category(1, "Darwin Awards");
@@ -134,6 +139,14 @@ public class DataUtils {
                         + "\"When I first started gigging around the pubs and clubs up North, two songs that were always in my set "
                         + "were Goodnight Girl and Love Is All Around.\""
         ));
+
+        try {
+            Thread.sleep(DELAY_TIME);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
+        Log.d(LOG_TAG, "generateNews finish in " + Thread.currentThread());
 
         return news;
     }

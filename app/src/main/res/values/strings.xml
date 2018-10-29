@@ -18,4 +18,6 @@
     <string name="desc_vk">VKontakte</string>
     <string name="desc_fb">Facebook</string>
     <string name="desc_twitter">Twitter</string>
+
+    <string name="unknown_error">Something went wrong!</string>
 </resources>

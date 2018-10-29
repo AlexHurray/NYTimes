@@ -13,7 +13,7 @@ public class ItemDecorationNewsList extends RecyclerView.ItemDecoration {
     private int gridSize;
     private boolean needLeftSpacing = false;
 
-    public ItemDecorationNewsList(int gridSpacingPx, int gridSize) {
+    ItemDecorationNewsList(int gridSpacingPx, int gridSize) {
         this.sizeGridSpacingPx = gridSpacingPx;
         this.gridSize = gridSize;
     }

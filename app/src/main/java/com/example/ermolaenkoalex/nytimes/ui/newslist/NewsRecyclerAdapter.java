@@ -15,6 +15,7 @@ import com.example.ermolaenkoalex.nytimes.model.Category;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapter.ViewHolder> {
 
     @NonNull
-    private final List<NewsItem> newsItems;
+    private final List<NewsItem> newsItems = new ArrayList<>();
 
     @NonNull
     private final LayoutInflater inflater;
@@ -38,10 +39,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
     @NonNull
     private final RequestManager imageLoader;
 
-    NewsRecyclerAdapter(@NonNull Context context, @NonNull List<NewsItem> newsItems,
-                        @Nullable OnItemClickListener clickListener) {
+    NewsRecyclerAdapter(@NonNull Context context, @Nullable OnItemClickListener clickListener) {
         this.context = context;
-        this.newsItems = newsItems;
         this.clickListener = clickListener;
         this.inflater = LayoutInflater.from(context);
 
@@ -75,6 +74,13 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         }
 
         return R.layout.item_news;
+    }
+
+    public void setData(List<NewsItem> data) {
+        newsItems.clear();
+        newsItems.addAll(data);
+
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

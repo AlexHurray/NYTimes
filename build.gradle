@@ -3,6 +3,7 @@
 buildscript {
     ext {
         jetVersion = '1.0.0'
+        butterKnifeVersion = '9.0.0-rc1'
     }
 
     repositories {

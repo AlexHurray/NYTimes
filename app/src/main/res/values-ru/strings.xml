@@ -19,4 +19,6 @@
     <string name="desc_vk">ВКонтакте</string>
     <string name="desc_fb">Фэйсбук</string>
     <string name="desc_twitter">Твиттер</string>
+
+    <string name="unknown_error">Что-то пошло не так!</string>
 </resources>
