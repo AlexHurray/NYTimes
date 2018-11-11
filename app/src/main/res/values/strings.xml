@@ -20,4 +20,35 @@
     <string name="desc_twitter">Twitter</string>
 
     <string name="unknown_error">Something went wrong!</string>
+    <string name="error_data_is_empty">There is no data for your request</string>
+    <string name="error_network">Network error. Please check your network connection and try again</string>
+    <string name="error_request">Request execution error</string>
+
+    <string name="section_home">Home</string>
+    <string name="section_opinion">Opinion</string>
+    <string name="section_world">World</string>
+    <string name="section_national">National</string>
+    <string name="section_politics">Politics</string>
+    <string name="section_upshot">Upshot</string>
+    <string name="section_nyregion">NYregion</string>
+    <string name="section_business">Business</string>
+    <string name="section_technology">Technology</string>
+    <string name="section_science">Science</string>
+    <string name="section_health">Health</string>
+    <string name="section_sports">Sports</string>
+    <string name="section_arts">Arts</string>
+    <string name="section_books">Books</string>
+    <string name="section_movies">Movies</string>
+    <string name="section_theater">Theater</string>
+    <string name="section_sundayreview">Sunday review</string>
+    <string name="section_fashion">Fashion</string>
+    <string name="section_tmagazine">Style Magazine</string>
+    <string name="section_food">Food</string>
+    <string name="section_travel">Travel</string>
+    <string name="section_magazine">Magazine</string>
+    <string name="section_realestate">Realestate</string>
+    <string name="section_automobiles">Automobiles</string>
+    <string name="section_obituaries">Obituaries</string>
+    <string name="section_insider">Insider</string>
+
 </resources>

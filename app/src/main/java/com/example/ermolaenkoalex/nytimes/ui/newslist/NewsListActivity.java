@@ -4,22 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
-import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 import com.example.ermolaenkoalex.nytimes.ui.about.AboutActivity;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.ui.newsdetails.NewsDetailsActivity;
-
-import java.util.List;
+import com.google.android.material.chip.Chip;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.TextViewCompat;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 
@@ -33,6 +34,14 @@ public class NewsListActivity extends BaseActivity
     @BindView(R.id.refresher)
     @NonNull
     SwipeRefreshLayout refresher;
+
+    @BindView(R.id.tv_error)
+    @NonNull
+    TextView tvError;
+
+    @BindView(R.id.ll_sections)
+    @NonNull
+    LinearLayout llSections;
 
     @NonNull
     private NewsListPresenter presenter;
@@ -52,15 +61,11 @@ public class NewsListActivity extends BaseActivity
         recyclerView.setAdapter(adapter);
 
         int numCol = getResources().getInteger(R.integer.news_columns_count);
-
-        recyclerView.setLayoutManager(numCol == 1
-                ? new LinearLayoutManager(this)
-                : new GridLayoutManager(this, numCol));
-
-        recyclerView.addItemDecoration(new ItemDecorationNewsList(
-                getResources().getDimensionPixelSize(R.dimen.spacing_small), numCol));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(numCol, StaggeredGridLayoutManager.VERTICAL));
 
         refresher.setOnRefreshListener(this);
+
+        addChips();
     }
 
     @Override
@@ -99,22 +104,54 @@ public class NewsListActivity extends BaseActivity
     }
 
     @Override
-    public void showLoading() {
-        refresher.setRefreshing(true);
-    }
+    public void showState(@NonNull ResponseState state) {
+        if (state.isLoading()) {
+            refresher.setRefreshing(true);
+            return;
+        }
 
-    @Override
-    public void hideLoading() {
         refresher.setRefreshing(false);
+        if (state.hasData()) {
+            recyclerView.setVisibility(View.VISIBLE);
+            adapter.setData(state.getData());
+            recyclerView.scrollToPosition(0);
+
+            tvError.setVisibility(View.GONE);
+
+            if (state.hasError()) {
+                Toast.makeText(this, state.getErrorMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            recyclerView.setVisibility(View.GONE);
+
+            if (state.hasError()) {
+                tvError.setVisibility(View.VISIBLE);
+                tvError.setText(state.getErrorMessage());
+            }
+        }
     }
 
-    @Override
-    public void setData(@NonNull List<NewsItem> data) {
-        adapter.setData(data);
-    }
+    private void addChips() {
 
-    @Override
-    public void showErrorToast() {
-        Toast.makeText(this, R.string.unknown_error, Toast.LENGTH_LONG).show();
+        for (Section section : Section.values()) {
+            Chip chip = new Chip(this);
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            TextViewCompat.setTextAppearance(chip, R.style.TextAppearance_AppCompat_Title_Inverse);
+
+            int spacing = getResources().getDimensionPixelSize(R.dimen.spacing_standard);
+            params.setMargins(spacing, spacing, spacing, spacing);
+            params.setMarginStart(spacing);
+            params.setMarginEnd(spacing);
+
+            chip.setLayoutParams(params);
+            chip.setChipBackgroundColorResource(R.color.colorPrimaryDark);
+            chip.setText(section.getSectionNameResId());
+            chip.setOnClickListener(view -> presenter.getNews(true, section));
+
+            llSections.addView(chip);
+        }
     }
 }

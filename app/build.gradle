@@ -29,8 +29,12 @@ dependencies {
     implementation "com.google.android.material:material:$jetVersion"
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-    implementation "com.github.bumptech.glide:glide:4.7.1"
+    implementation "com.github.bumptech.glide:glide:4.8.0"
     implementation "io.reactivex.rxjava2:rxjava:2.2.2"
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation "android.arch.lifecycle:extensions:1.1.1"
 }

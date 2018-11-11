@@ -14,7 +14,7 @@ import static android.text.format.DateUtils.FORMAT_SHOW_DATE;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.WEEK_IN_MILLIS;
 
-public class StringUtils {
+public final class StringUtils {
     public static CharSequence formatDate(@NonNull Context context, @NonNull Date date) {
         int flags = FORMAT_ABBREV_RELATIVE |
                 FORMAT_SHOW_DATE | FORMAT_ABBREV_TIME | FORMAT_ABBREV_MONTH;

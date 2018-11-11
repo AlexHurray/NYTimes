@@ -21,4 +21,34 @@
     <string name="desc_twitter">Твиттер</string>
 
     <string name="unknown_error">Что-то пошло не так!</string>
+    <string name="error_data_is_empty">Запрос не дал результатов</string>
+    <string name="error_network">Ошибка сети. Пожалуйста, проверьте ваше соединение и повторите попытку</string>
+    <string name="error_request">Ошибка выполнения запроса</string>
+
+    <string name="section_home">Главная</string>
+    <string name="section_opinion">Мнение</string>
+    <string name="section_world">Мир</string>
+    <string name="section_national">В США</string>
+    <string name="section_politics">Политика</string>
+    <string name="section_upshot">Заключение</string>
+    <string name="section_nyregion">Нью-Йорк</string>
+    <string name="section_business">Бизнес</string>
+    <string name="section_technology">Технологии</string>
+    <string name="section_science">Наука</string>
+    <string name="section_health">Здоровье</string>
+    <string name="section_sports">Спорт</string>
+    <string name="section_arts">Искусство</string>
+    <string name="section_books">Книги</string>
+    <string name="section_movies">Фильмы</string>
+    <string name="section_theater">Театр</string>
+    <string name="section_sundayreview">Обзор недели</string>
+    <string name="section_fashion">Мода</string>
+    <string name="section_tmagazine">Стильный журнал</string>
+    <string name="section_food">Еда</string>
+    <string name="section_travel">Путешествия</string>
+    <string name="section_magazine">Журнал</string>
+    <string name="section_realestate">Недвижимость</string>
+    <string name="section_automobiles">Авто</string>
+    <string name="section_obituaries">Некрологи</string>
+    <string name="section_insider">Инсайдер</string>
 </resources>

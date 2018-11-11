@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.ermolaenkoalex.nytimes.R;
-import com.example.ermolaenkoalex.nytimes.model.Category;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
@@ -69,8 +68,8 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
 
     @Override
     public int getItemViewType(int position) {
-        if (newsItems.get(position).getCategory().getId() == Category.CRIMINAL_ID) {
-            return R.layout.item_news_criminal;
+        if (!newsItems.get(position).hasUsCategory()) {
+            return R.layout.item_news_us;
         }
 
         return R.layout.item_news;
@@ -113,7 +112,7 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         void bind(@NonNull NewsItem newsItem) {
             // Fill views with our data
             imageLoader.load(newsItem.getImageUrl()).into(imageView);
-            categoryView.setText(newsItem.getCategory().getName());
+            categoryView.setText(newsItem.getCategory());
             titleView.setText(newsItem.getTitle());
             previewView.setText(newsItem.getPreviewText());
             dateView.setText(StringUtils.formatDate(context, newsItem.getPublishDate()));
