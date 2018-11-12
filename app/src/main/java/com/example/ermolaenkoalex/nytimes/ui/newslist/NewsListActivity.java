@@ -1,5 +1,6 @@
 package com.example.ermolaenkoalex.nytimes.ui.newslist;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -49,6 +50,11 @@ public class NewsListActivity extends BaseActivity
     @NonNull
     private NewsRecyclerAdapter adapter;
 
+    public static void start(Activity activity) {
+        Intent startIntent = new Intent(activity, NewsListActivity.class);
+        activity.startActivity(startIntent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +63,7 @@ public class NewsListActivity extends BaseActivity
         presenter = ViewModelProviders.of(this).get(NewsListPresenter.class);
 
         adapter = new NewsRecyclerAdapter(this, newsItem
-                -> NewsDetailsActivity.start(this, newsItem));
+                -> NewsDetailsActivity.start(this, newsItem.getId()));
         recyclerView.setAdapter(adapter);
 
         int numCol = getResources().getInteger(R.integer.news_columns_count);

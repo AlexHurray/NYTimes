@@ -24,6 +24,9 @@
     <string name="error_data_is_empty">Запрос не дал результатов</string>
     <string name="error_network">Ошибка сети. Пожалуйста, проверьте ваше соединение и повторите попытку</string>
     <string name="error_request">Ошибка выполнения запроса</string>
+    <string name="error_get_from_db">Ошибка получения новости из базы данных</string>
+    <string name="error_delete_in_db">Ошибка удаления новости в базе данных</string>
+    <string name="error_save_in_db">Ошибка сохранения новости в базу данных</string>
 
     <string name="section_home">Главная</string>
     <string name="section_opinion">Мнение</string>
@@ -51,4 +54,11 @@
     <string name="section_automobiles">Авто</string>
     <string name="section_obituaries">Некрологи</string>
     <string name="section_insider">Инсайдер</string>
+
+    <string name="title_edit_news">Редактирование новости</string>
+    <string name="label_title"><u>Заголовок:</u></string>
+    <string name="label_image_url"><u>Адрес картинки:</u></string>
+    <string name="label_news_url"><u>Адрес новости:</u></string>
+    <string name="label_preview_text"><u>Краткое содержание новости:</u></string>
+    <string name="menu_apply">Принять</string>
 </resources>

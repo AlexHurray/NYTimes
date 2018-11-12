@@ -8,6 +8,12 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [toothpick_registry_package_name: 'com.example.ermolaenkoalex.nytimes']
+            }
+        }
     }
     buildTypes {
         release {
@@ -37,4 +43,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$toothpickVersion"
+    implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpickVersion"
+    annotationProcessor "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
 }

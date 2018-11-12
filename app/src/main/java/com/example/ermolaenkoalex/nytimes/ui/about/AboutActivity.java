@@ -1,22 +1,16 @@
 package com.example.ermolaenkoalex.nytimes.ui.about;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AboutActivity extends BaseActivity {
@@ -27,6 +21,11 @@ public class AboutActivity extends BaseActivity {
 
     @BindView(R.id.et_message)
     EditText message;
+
+    public static void start(Activity activity) {
+        Intent startIntent = new Intent(activity, AboutActivity.class);
+        activity.startActivity(startIntent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

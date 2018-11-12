@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".AppDelegate"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,19 +13,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.newslist.NewsListActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:name=".ui.splash.SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.newslist.NewsListActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ui.about.SendMailActivity" />
         <activity
             android:name=".ui.about.AboutActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.newsdetails.NewsDetailsActivity"/>
+        <activity
+            android:name=".ui.newsdetails.NewsDetailsActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.newsedit.NewsEditActivity"
+            android:noHistory="true" />
     </application>
 
 </manifest>

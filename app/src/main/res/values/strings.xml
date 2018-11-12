@@ -23,6 +23,9 @@
     <string name="error_data_is_empty">There is no data for your request</string>
     <string name="error_network">Network error. Please check your network connection and try again</string>
     <string name="error_request">Request execution error</string>
+    <string name="error_get_from_db">Cannot get news from database</string>
+    <string name="error_delete_in_db">Cannot delete news in database</string>
+    <string name="error_save_in_db">Cannot save news in database</string>
 
     <string name="section_home">Home</string>
     <string name="section_opinion">Opinion</string>
@@ -50,5 +53,14 @@
     <string name="section_automobiles">Automobiles</string>
     <string name="section_obituaries">Obituaries</string>
     <string name="section_insider">Insider</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Delete</string>
+
+    <string name="title_edit_news">Edit news</string>
+    <string name="label_title"><u>Title:</u></string>
+    <string name="label_image_url"><u>Image URL:</u></string>
+    <string name="label_news_url"><u>News URL:</u></string>
+    <string name="label_preview_text"><u>Preview text:</u></string>
+    <string name="menu_apply">Apply</string>
 
 </resources>
