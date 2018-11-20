@@ -62,5 +62,7 @@
     <string name="label_news_url"><u>News URL:</u></string>
     <string name="label_preview_text"><u>Preview text:</u></string>
     <string name="menu_apply">Apply</string>
+    <string name="text_welcome">Welcome!</string>
+    <string name="btn_skip">Skip</string>
 
 </resources>

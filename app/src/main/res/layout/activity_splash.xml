@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/size_logo_width"
-    android:layout_height="@dimen/size_logo_height"
-    android:layout_gravity="center"
-    android:contentDescription="@null"
-    android:scaleType="centerInside"
-    android:src="@drawable/logo" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_standard">
+
+    <TextView
+        style="@style/Intro.Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_standard"
+        android:text="@string/text_welcome" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_splash"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/spacing_standard"
+        android:layout_weight="1" />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_circle_indicator" />
+
+    <Button
+        android:id="@+id/btn_skip"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/spacing_standard"
+        android:text="@string/btn_skip" />
+
+</LinearLayout>
