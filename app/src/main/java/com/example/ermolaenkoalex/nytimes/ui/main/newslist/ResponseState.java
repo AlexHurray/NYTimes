@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.nytimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.main.newslist;
 
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;

@@ -22,18 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.newslist.NewsListActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ui.about.SendMailActivity" />
+            android:name=".ui.main.MainActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".ui.about.AboutActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ui.newsdetails.NewsDetailsActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".ui.newsedit.NewsEditActivity"
-            android:noHistory="true" />
     </application>
 
 </manifest>

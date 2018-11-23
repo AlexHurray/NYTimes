@@ -19,4 +19,5 @@
 
     <dimen name="size_logo_width">400dp</dimen>
     <dimen name="size_logo_height">300dp</dimen>
+    <dimen name="size_frame_list">300dp</dimen>
 </resources>

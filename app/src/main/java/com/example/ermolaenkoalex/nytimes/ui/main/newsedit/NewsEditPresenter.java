@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.nytimes.ui.newsedit;
+package com.example.ermolaenkoalex.nytimes.ui.main.newsedit;
 
 import android.util.Log;
 

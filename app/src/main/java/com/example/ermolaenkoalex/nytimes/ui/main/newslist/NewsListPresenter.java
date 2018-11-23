@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.nytimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.main.newslist;
 
 import android.util.Log;
 
@@ -66,6 +66,12 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
         }
     }
 
+    @Override
+    protected void onCleared() {
+        dispose();
+        super.onCleared();
+    }
+
     private void loadDataFromInternet() {
         dispose();
 
@@ -76,12 +82,6 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::checkResponseAndShowState, this::handleError);
-    }
-
-    @Override
-    protected void onCleared() {
-        dispose();
-        super.onCleared();
     }
 
     private void showState(@NonNull ResponseState state) {

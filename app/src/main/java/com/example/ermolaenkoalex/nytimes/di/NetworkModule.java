@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import toothpick.config.Module;
 
 public class NetworkModule extends Module {
-    private static final String URL = "http://api.nytimes.com/";
+    private static final String URL = "https://api.nytimes.com/";
     private static final String API_KEY = "dec3395ed3034d1599bac75404d47ed2";
     private static final int TIMEOUT_IN_SECONDS = 2;
 

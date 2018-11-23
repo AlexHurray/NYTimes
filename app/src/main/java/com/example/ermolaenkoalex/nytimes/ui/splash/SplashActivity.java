@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseFragmentActivity;
-import com.example.ermolaenkoalex.nytimes.ui.newslist.NewsListActivity;
+import com.example.ermolaenkoalex.nytimes.ui.main.MainActivity;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,24 +55,25 @@ public class SplashActivity extends BaseFragmentActivity {
                     .subscribe(this::startSecondActivity);
             compositeDisposable.add(disposable);
         } else {
-            NewsListActivity.start(this);
+            startSecondActivity();
         }
     }
 
     private void startSecondActivity() {
-        NewsListActivity.start(this);
+        MainActivity.start(this);
         finish();
     }
 
     @OnClick(R.id.btn_skip)
     void onButtonSkip() {
+        compositeDisposable.dispose();
         startSecondActivity();
     }
 
     @Override
     protected void onStop() {
-        super.onStop();
         compositeDisposable.dispose();
+        super.onStop();
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -90,5 +91,4 @@ public class SplashActivity extends BaseFragmentActivity {
             return SCREENS.length;
         }
     }
-
 }

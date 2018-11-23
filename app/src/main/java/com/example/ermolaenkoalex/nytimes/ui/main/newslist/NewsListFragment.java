@@ -1,31 +1,31 @@
-package com.example.ermolaenkoalex.nytimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.main.newslist;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
-import com.example.ermolaenkoalex.nytimes.ui.about.AboutActivity;
 import com.example.ermolaenkoalex.nytimes.R;
-import com.example.ermolaenkoalex.nytimes.ui.newsdetails.NewsDetailsActivity;
-import com.google.android.material.chip.Chip;
+import com.example.ermolaenkoalex.nytimes.common.BaseFragment;
+import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.widget.TextViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class NewsListActivity extends BaseActivity
+public class NewsListFragment extends BaseFragment
         implements SwipeRefreshLayout.OnRefreshListener, NewsListView {
 
     @BindView(R.id.recycler_view)
@@ -40,30 +40,46 @@ public class NewsListActivity extends BaseActivity
     @NonNull
     TextView tvError;
 
-    @BindView(R.id.ll_sections)
-    @NonNull
-    LinearLayout llSections;
-
     @NonNull
     private NewsListPresenter presenter;
 
     @NonNull
     private NewsRecyclerAdapter adapter;
 
-    public static void start(Activity activity) {
-        Intent startIntent = new Intent(activity, NewsListActivity.class);
-        activity.startActivity(startIntent);
+    @Nullable
+    private NewsListFragmentListener listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof NewsListFragmentListener) {
+            listener = (NewsListFragmentListener) context;
+        }
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_list);
+    public void onDetach() {
+        listener = null;
+        super.onDetach();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        setRetainInstance(true);
+        return inflater.inflate(R.layout.fragment_news_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
 
         presenter = ViewModelProviders.of(this).get(NewsListPresenter.class);
 
-        adapter = new NewsRecyclerAdapter(this, newsItem
-                -> NewsDetailsActivity.start(this, newsItem.getId()));
+        adapter = new NewsRecyclerAdapter(getContext(), this::onClickNews);
         recyclerView.setAdapter(adapter);
 
         int numCol = getResources().getInteger(R.integer.news_columns_count);
@@ -71,33 +87,35 @@ public class NewsListActivity extends BaseActivity
 
         refresher.setOnRefreshListener(this);
 
-        addChips();
+        setTitle(getString(R.string.app_name), false);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         presenter.bind(this);
         presenter.getNews(false);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         presenter.unbind();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_news_list, menu);
-        return true;
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_news_list, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_about:
-                startActivity(new Intent(this, AboutActivity.class));
+                if (listener != null) {
+                    listener.onAboutClicked();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -125,7 +143,7 @@ public class NewsListActivity extends BaseActivity
             tvError.setVisibility(View.GONE);
 
             if (state.hasError()) {
-                Toast.makeText(this, state.getErrorMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), state.getErrorMessage(), Toast.LENGTH_LONG).show();
             }
         } else {
             recyclerView.setVisibility(View.GONE);
@@ -137,27 +155,19 @@ public class NewsListActivity extends BaseActivity
         }
     }
 
-    private void addChips() {
+    public void loadNews(Section section) {
+        presenter.getNews(true, section);
+    }
 
-        for (Section section : Section.values()) {
-            Chip chip = new Chip(this);
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-
-            TextViewCompat.setTextAppearance(chip, R.style.TextAppearance_AppCompat_Title_Inverse);
-
-            int spacing = getResources().getDimensionPixelSize(R.dimen.spacing_standard);
-            params.setMargins(spacing, spacing, spacing, spacing);
-            params.setMarginStart(spacing);
-            params.setMarginEnd(spacing);
-
-            chip.setLayoutParams(params);
-            chip.setChipBackgroundColorResource(R.color.colorPrimaryDark);
-            chip.setText(section.getSectionNameResId());
-            chip.setOnClickListener(view -> presenter.getNews(true, section));
-
-            llSections.addView(chip);
+    private void onClickNews(NewsItem newsItem) {
+        if (listener != null) {
+            listener.onNewsClicked(newsItem.getId());
         }
+    }
+
+    public interface NewsListFragmentListener {
+        void onNewsClicked(int id);
+
+        void onAboutClicked();
     }
 }

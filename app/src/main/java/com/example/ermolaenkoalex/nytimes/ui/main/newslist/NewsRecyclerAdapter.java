@@ -1,4 +1,4 @@
-package com.example.ermolaenkoalex.nytimes.ui.newslist;
+package com.example.ermolaenkoalex.nytimes.ui.main.newslist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
