@@ -65,4 +65,11 @@
     <string name="text_welcome">Welcome!</string>
     <string name="btn_skip">Skip</string>
 
+    <string name="service_notification_text">News updating…</string>
+    <string name="service_notification_title">NY Times</string>
+    <string name="service_notification_channel_desc">Background update</string>
+    <string name="service_action_cancel">Cancel</string>
+    <string name="service_result_success">Successful update</string>
+    <string name="service_result_fail">An error occurred during the update</string>
+
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseFragmentActivity;
 import com.example.ermolaenkoalex.nytimes.ui.main.MainActivity;
+import com.example.ermolaenkoalex.nytimes.utils.SharedPreferencesHelper;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +28,7 @@ public class SplashActivity extends BaseFragmentActivity {
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private static final String KEY_LOGO = "KEY_LOGO";
+
     private static final long TIME_DELAY = 10;
 
     @BindView(R.id.pager_splash)
@@ -37,9 +38,9 @@ public class SplashActivity extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        boolean showLogo = sharedPreferences.getBoolean(KEY_LOGO, true);
-        sharedPreferences.edit().putBoolean(KEY_LOGO, !showLogo).apply();
+        SharedPreferencesHelper helper = new SharedPreferencesHelper(this);
+        boolean showLogo = helper.getShowLogo();
+        helper.setShowLogo(!showLogo);
 
         if (showLogo) {
             setContentView(R.layout.activity_splash);

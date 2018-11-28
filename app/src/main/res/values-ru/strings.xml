@@ -61,4 +61,11 @@
     <string name="label_news_url"><u>Адрес новости:</u></string>
     <string name="label_preview_text"><u>Краткое содержание новости:</u></string>
     <string name="menu_apply">Принять</string>
+
+    <string name="service_notification_text">Обновление новостей…</string>
+    <string name="service_notification_title">NY Times</string>
+    <string name="service_notification_channel_desc">Фоновое обновление</string>
+    <string name="service_action_cancel">Отменить</string>
+    <string name="service_result_success">Обновление прошло успешно</string>
+    <string name="service_result_fail">В процессе обновления произошла ошибка</string>
 </resources>

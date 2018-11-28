@@ -5,10 +5,9 @@ import android.util.Log;
 import com.example.ermolaenkoalex.nytimes.api.NewsEndpoint;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BasePresenter;
-import com.example.ermolaenkoalex.nytimes.dto.ResultDTO;
-import com.example.ermolaenkoalex.nytimes.dto.ResultsDTO;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
-import com.example.ermolaenkoalex.nytimes.utils.NewsItemConverter;
+import com.example.ermolaenkoalex.nytimes.utils.DownloadingNews;
+import com.example.ermolaenkoalex.nytimes.utils.SharedPreferencesHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,11 +32,15 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
     private List<NewsItem> newsList = new ArrayList<>();
 
     @NonNull
-    private Section currentSection = Section.HOME;
+    private Section currentSection = Section.OPINION;
 
     @NonNull
     @Inject
     NewsEndpoint news;
+
+    @NonNull
+    @Inject
+    SharedPreferencesHelper sharedPreferencesHelper;
 
     public NewsListPresenter() {
         Disposable disposable = repository.getDataObservable()
@@ -58,6 +61,7 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
 
     public void getNews(boolean forceReload, Section section) {
         currentSection = section;
+        sharedPreferencesHelper.setSection(currentSection);
 
         if (newsList.isEmpty() || forceReload) {
             loadDataFromInternet();
@@ -78,7 +82,7 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
         showState(new ResponseState(true, newsList));
 
         disposable = news.getNews(currentSection)
-                .map(this::convert2NewsItemList)
+                .map(DownloadingNews::convert2NewsItemList)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::checkResponseAndShowState, this::handleError);
@@ -88,20 +92,6 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
         if (view != null) {
             view.showState(state);
         }
-    }
-
-    private List<NewsItem> convert2NewsItemList(@NonNull ResultsDTO response) {
-        List<NewsItem> items = new ArrayList<>();
-        final List<ResultDTO> results = response.getResults();
-        if (results == null) {
-            return items;
-        }
-
-        for (ResultDTO resultDTO : results) {
-            items.add(NewsItemConverter.resultDTO2NewsItem(resultDTO));
-        }
-
-        return items;
     }
 
     private void handleError(Throwable throwable) {

@@ -50,4 +50,5 @@ dependencies {
     implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpickVersion"
     annotationProcessor "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
     implementation "me.relex:circleindicator:2.1.0"
+    implementation "android.arch.work:work-runtime:1.0.0-alpha11"
 }
