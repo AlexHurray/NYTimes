@@ -5,6 +5,8 @@ buildscript {
         jetVersion = '1.0.0'
         butterKnifeVersion = '9.0.0-rc1'
         retrofitVersion = '2.4.0'
+        roomVersion = '2.1.0-alpha02'
+        toothpickVersion = '1.1.3'
     }
 
     repositories {

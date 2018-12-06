@@ -1,79 +1,83 @@
 package com.example.ermolaenkoalex.nytimes.ui.newsdetails;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseActivity;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
+import com.example.ermolaenkoalex.nytimes.ui.newsedit.NewsEditActivity;
+import com.example.ermolaenkoalex.nytimes.utils.StringUtils;
 
+import javax.inject.Inject;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 
-public class NewsDetailsActivity extends BaseActivity {
+public class NewsDetailsActivity extends BaseActivity implements NewsDetailsView {
+    private static final String KEY_ID = "KEY_ID";
 
-    private static final String KEY_URL = "KEY_URL";
-    private static final String KEY_CATEGORY = "KEY_CATEGORY";
+    @BindView(R.id.iv_image)
+    ImageView imageView;
 
-    @BindView(R.id.web_view)
-    WebView webView;
+    @BindView(R.id.tv_title)
+    TextView titleView;
 
-    public static void start(Activity activity, NewsItem newsItem) {
+    @BindView(R.id.tv_date)
+    TextView dateView;
+
+    @BindView(R.id.tv_full_text)
+    TextView fullTextView;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+
+    private int id;
+
+    @NonNull
+    @Inject
+    NewsDetailsPresenter presenter;
+
+    public static void start(Activity activity, int id) {
         Intent startIntent = new Intent(activity, NewsDetailsActivity.class);
-        startIntent.putExtra(KEY_URL, newsItem.getItemUrl());
-        startIntent.putExtra(KEY_CATEGORY, newsItem.getCategory());
+        startIntent.putExtra(KEY_ID, id);
         activity.startActivity(startIntent);
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details);
 
-        String newsURL = getIntent().getStringExtra(KEY_URL);
-        String category = getIntent().getStringExtra(KEY_CATEGORY);
+        presenter = ViewModelProviders.of(this).get(NewsDetailsPresenter.class);
 
-        ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            ab.setTitle(category.toUpperCase());
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
+        id = getIntent().getIntExtra(KEY_ID, 0);
+    }
 
-        WebSettings settings = webView.getSettings();
-        settings.setJavaScriptEnabled(true);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.bind(this);
+        presenter.initNews(id);
+    }
 
-        webView.setWebViewClient(new WebViewClient() {
-            private static final String NYTIMES_HOST = "www.nytimes.com";
-
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                return shouldOverrideUrlLoading(view, request.getUrl().toString());
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (Uri.parse(newsURL).getHost().equalsIgnoreCase(NYTIMES_HOST)) {
-                    return false;
-                }
-
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
-                return true;
-            }
-        });
-
-        webView.loadUrl(newsURL);
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unbind();
     }
 
     @Override
@@ -83,11 +87,58 @@ public class NewsDetailsActivity extends BaseActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
+    public boolean onCreateOptionsMenu(@NonNull Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_news_details, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_edit:
+                NewsEditActivity.start(this, id);
+                return true;
+            case R.id.action_delete:
+                presenter.delete();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void setData(NewsItem newsItem) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(newsItem.getCategory().toUpperCase());
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
+        RequestOptions imageOption = new RequestOptions()
+                .placeholder(R.drawable.placeholder_image)
+                .fallback(R.drawable.placeholder_image)
+                .centerCrop();
+        Glide.with(this)
+                .applyDefaultRequestOptions(imageOption)
+                .load(newsItem.getImageUrl())
+                .into(imageView);
+        titleView.setText(newsItem.getTitle());
+        dateView.setText(StringUtils.formatDate(this, newsItem.getPublishDate()));
+        fullTextView.setText(newsItem.getPreviewText());
+    }
+
+    @Override
+    public void close() {
+        finish();
+    }
+
+    @Override
+    public void showErrorMessage(@IdRes int errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgress(boolean show) {
+        progressBar.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 }

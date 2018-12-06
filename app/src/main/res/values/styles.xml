@@ -75,6 +75,22 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
 
+    <style name="EditDetails.Title" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_big</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+    </style>
+
+    <style name="EditDetails.Text" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_marginBottom">@dimen/spacing_small</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_small</item>
+        <item name="android:layout_marginStart">@dimen/spacing_big</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+    </style>
+
     <declare-styleable name="StandardViewStyleTable">
         <attr name="android:layout_marginBottom" />
         <attr name="android:layout_marginEnd" />

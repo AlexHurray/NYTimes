@@ -2,12 +2,9 @@ package com.example.ermolaenkoalex.nytimes.ui.newslist;
 
 import android.util.Log;
 
-import com.example.ermolaenkoalex.nytimes.api.RestApi;
 import com.example.ermolaenkoalex.nytimes.R;
-import com.example.ermolaenkoalex.nytimes.dto.ResultDTO;
-import com.example.ermolaenkoalex.nytimes.dto.ResultsDTO;
+import com.example.ermolaenkoalex.nytimes.common.BasePresenter;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
-import com.example.ermolaenkoalex.nytimes.utils.NewsItemConverter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,12 +12,11 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class NewsListPresenter extends ViewModel {
+public class NewsListPresenter extends BasePresenter<NewsListView> {
 
     private static final String LOG_TAG = "NewsListVM";
 
@@ -30,18 +26,20 @@ public class NewsListPresenter extends ViewModel {
     @NonNull
     private List<NewsItem> newsList = new ArrayList<>();
 
-    @Nullable
-    private NewsListView newsListView;
-
     @NonNull
     private Section currentSection = Section.HOME;
 
-    public void bind(@NonNull NewsListView newsListView) {
-        this.newsListView = newsListView;
-    }
+    public NewsListPresenter() {
+        Disposable disposable = repository.getDataObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(newsItems -> {
+                    Log.d(LOG_TAG, newsItems.toString());
+                    newsList = newsItems;
+                    showState(new ResponseState(false, newsList));
+                }, throwable -> Log.e(LOG_TAG, throwable.toString()));
 
-    public void unbind() {
-        newsListView = null;
+        compositeDisposable.add(disposable);
     }
 
     public void getNews(boolean forceReload) {
@@ -52,23 +50,21 @@ public class NewsListPresenter extends ViewModel {
         currentSection = section;
 
         if (newsList.isEmpty() || forceReload) {
-            loadData();
+            loadDataFromInternetAndSave2Db();
         } else {
-            newsListView.showState(new ResponseState(false, newsList));
+            view.showState(new ResponseState(false, newsList));
         }
     }
 
-    private void loadData() {
+    private void loadDataFromInternetAndSave2Db() {
         dispose();
 
         showState(new ResponseState(true, newsList));
 
-        disposable = RestApi.news()
-                .getNews(currentSection)
-                .map(this::convert2NewsItemList)
+        disposable = repository.updateNews(currentSection)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::checkResponseAndShowState, this::handleError);
+                .subscribe(this::handleSuccess, this::handleError);
     }
 
     @Override
@@ -78,23 +74,9 @@ public class NewsListPresenter extends ViewModel {
     }
 
     private void showState(@NonNull ResponseState state) {
-        if (newsListView != null) {
-            newsListView.showState(state);
+        if (view != null) {
+            view.showState(state);
         }
-    }
-
-    private List<NewsItem> convert2NewsItemList(@NonNull ResultsDTO response) {
-        List<NewsItem> items = new ArrayList<>();
-        final List<ResultDTO> results = response.getResults();
-        if (results == null) {
-            return items;
-        }
-
-        for (ResultDTO resultDTO : results) {
-            items.add(NewsItemConverter.resultDTO2NewsItem(resultDTO));
-        }
-
-        return items;
     }
 
     private void handleError(Throwable throwable) {
@@ -104,15 +86,8 @@ public class NewsListPresenter extends ViewModel {
         showState(new ResponseState(false, newsList, errorMessageId));
     }
 
-    private void checkResponseAndShowState(@NonNull List<NewsItem> items) {
-        if (items.isEmpty()) {
-            ResponseState state = new ResponseState(false);
-            showState(state);
-            return;
-        }
-
-        newsList = items;
-        showState(new ResponseState(false, newsList));
+    private void handleSuccess() {
+        Log.d(LOG_TAG, "handleSuccess");
     }
 
     private void dispose() {

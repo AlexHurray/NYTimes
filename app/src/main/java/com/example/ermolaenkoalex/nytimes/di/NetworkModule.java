@@ -1,31 +1,27 @@
-package com.example.ermolaenkoalex.nytimes.api;
+package com.example.ermolaenkoalex.nytimes.di;
+
+import com.example.ermolaenkoalex.nytimes.api.ApiKeyInterceptor;
+import com.example.ermolaenkoalex.nytimes.api.EnumValueConverter;
+import com.example.ermolaenkoalex.nytimes.api.NewsEndpoint;
 
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import toothpick.config.Module;
 
-public final class RestApi {
-
+public class NetworkModule extends Module {
     private static final String URL = "http://api.nytimes.com/";
     private static final String API_KEY = "dec3395ed3034d1599bac75404d47ed2";
     private static final int TIMEOUT_IN_SECONDS = 2;
 
-    private static NewsEndpoint newsEndpoint;
-
-    public static synchronized NewsEndpoint news() {
-        if (newsEndpoint == null) {
-            newsEndpoint = createNewsEndpoint();
-        }
-        return newsEndpoint;
-    }
-
-    private RestApi() {
-        throw new AssertionError("No instances");
+    public NetworkModule() {
+        bind(NewsEndpoint.class).toInstance(createNewsEndpoint());
     }
 
     @NonNull
