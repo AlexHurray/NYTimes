@@ -1,6 +1,6 @@
 package com.example.ermolaenkoalex.nytimes.common;
 
-import com.example.ermolaenkoalex.nytimes.AppDelegate;
+import com.example.ermolaenkoalex.nytimes.MyApp;
 import com.example.ermolaenkoalex.nytimes.db.NewsRepository;
 
 import javax.inject.Inject;
@@ -23,7 +23,7 @@ public abstract class BasePresenter<T> extends ViewModel {
     protected NewsRepository repository;
 
     public BasePresenter() {
-        Toothpick.inject(this, AppDelegate.getAppScope());
+        Toothpick.inject(this, MyApp.getAppScope());
     }
 
     public void bind(@NonNull T view) {

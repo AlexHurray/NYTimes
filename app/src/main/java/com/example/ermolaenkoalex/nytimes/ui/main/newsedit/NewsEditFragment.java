@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ermolaenkoalex.nytimes.R;
@@ -37,6 +38,9 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
 
     @BindView(R.id.et_image_url)
     EditText etImageUrl;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     private int id;
 
@@ -96,20 +100,18 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
     }
 
     @Override
-    public void updateData(NewsItem newsItem) {
-        newsItem.setTitle(etTitle.getText().toString());
-        newsItem.setPreviewText(etPreviewText.getText().toString());
-        newsItem.setImageUrl(etImageUrl.getText().toString());
-        newsItem.setItemUrl(etNewsUrl.getText().toString());
+    public void close() {
+        goBack();
     }
 
     @Override
-    public void close(@IdRes int errorMessage) {
-        if (errorMessage != 0) {
-            Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
-        }
+    public void showErrorMessage(@IdRes int errorMessage) {
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+    }
 
-        goBack();
+    @Override
+    public void showProgress(boolean show) {
+        progressBar.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -122,7 +124,10 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_apply:
-                presenter.saveData();
+                presenter.saveData(etTitle.getText().toString(),
+                        etPreviewText.getText().toString(),
+                        etImageUrl.getText().toString(),
+                        etNewsUrl.getText().toString());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

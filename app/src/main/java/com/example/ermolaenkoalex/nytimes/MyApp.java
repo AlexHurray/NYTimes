@@ -12,9 +12,9 @@ import toothpick.registries.FactoryRegistryLocator;
 import toothpick.registries.MemberInjectorRegistryLocator;
 import toothpick.smoothie.module.SmoothieApplicationModule;
 
-public class AppDelegate extends Application {
+public class MyApp extends Application {
 
-    private static Scope sAppScope;
+    private static Scope appScope;
 
     @Override
     public void onCreate() {
@@ -24,11 +24,11 @@ public class AppDelegate extends Application {
         MemberInjectorRegistryLocator.setRootRegistry(new com.example.ermolaenkoalex.nytimes.MemberInjectorRegistry());
         FactoryRegistryLocator.setRootRegistry(new com.example.ermolaenkoalex.nytimes.FactoryRegistry());
 
-        sAppScope = Toothpick.openScope(AppDelegate.class);
-        sAppScope.installModules(new SmoothieApplicationModule(this), new DbModule(this), new NetworkModule());
+        appScope = Toothpick.openScope(MyApp.class);
+        appScope.installModules(new SmoothieApplicationModule(this), new DbModule(this), new NetworkModule());
     }
 
     public static Scope getAppScope() {
-        return sAppScope;
+        return appScope;
     }
 }

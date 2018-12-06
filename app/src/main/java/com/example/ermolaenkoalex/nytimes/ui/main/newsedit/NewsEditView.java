@@ -9,7 +9,9 @@ public interface NewsEditView {
 
     void setData(@NonNull NewsItem newsItem);
 
-    void updateData(@NonNull NewsItem newsItem);
+    void close();
 
-    void close(@IdRes int errorMessage);
+    void showErrorMessage(@IdRes int errorMessage);
+
+    void showProgress(boolean show);
 }

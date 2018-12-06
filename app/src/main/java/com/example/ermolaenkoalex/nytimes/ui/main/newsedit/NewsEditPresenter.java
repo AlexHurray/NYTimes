@@ -17,16 +17,27 @@ public class NewsEditPresenter extends BasePresenter<NewsEditView> {
 
     private NewsItem newsItem;
 
+    private boolean inProgress = false;
+
     public void getNews(int id) {
         if (newsItem == null) {
             getDataFromDb(id);
         }
     }
 
-    public void saveData() {
-        if (view != null) {
-            view.updateData(newsItem);
+    public void saveData(String title, String previewText, String imageUrl, String itemUrl) {
+        if (inProgress) {
+            return;
+        } else {
+            inProgress = true;
         }
+        if (view != null) {
+            view.showProgress(true);
+        }
+        newsItem.setTitle(title);
+        newsItem.setPreviewText(previewText);
+        newsItem.setImageUrl(imageUrl);
+        newsItem.setItemUrl(itemUrl);
 
         Disposable disposable = repository.saveItem(newsItem)
                 .subscribeOn(Schedulers.io())
@@ -53,22 +64,27 @@ public class NewsEditPresenter extends BasePresenter<NewsEditView> {
     }
 
     private void onSuccessSave() {
+        inProgress = false;
         if (view != null) {
-            view.close(0);
+            view.showProgress(false);
+            view.close();
         }
     }
 
     private void handleGetError(Throwable throwable) {
         Log.e(LOG_TAG, throwable.toString());
         if (view != null) {
-            view.close(R.string.error_get_from_db);
+            view.showErrorMessage(R.string.error_get_from_db);
+            view.close();
         }
     }
 
     private void handleSaveError(Throwable throwable) {
         Log.e(LOG_TAG, throwable.toString());
+        inProgress = false;
         if (view != null) {
-            view.close(R.string.error_save_in_db);
+            view.showProgress(false);
+            view.showErrorMessage(R.string.error_save_in_db);
         }
     }
 }

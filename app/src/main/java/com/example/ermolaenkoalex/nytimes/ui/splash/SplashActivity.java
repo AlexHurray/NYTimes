@@ -24,11 +24,10 @@ import me.relex.circleindicator.CircleIndicator;
 public class SplashActivity extends BaseFragmentActivity {
 
     private static int[] SCREENS = new int[]{R.drawable.intro1, R.drawable.intro2, R.drawable.intro3};
-
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
-
     private static final String KEY_LOGO = "KEY_LOGO";
     private static final long TIME_DELAY = 10;
+
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @BindView(R.id.pager_splash)
     ViewPager pager;

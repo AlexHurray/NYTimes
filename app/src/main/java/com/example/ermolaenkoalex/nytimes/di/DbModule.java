@@ -21,10 +21,8 @@ public class DbModule extends Module {
 
     @NonNull
     private NewsDao provideDao() {
-        final AppDatabase database = Room.databaseBuilder(context,
-                AppDatabase.class,
-                AppDatabase.DATABASE_NAME)
-                .build();
+        final AppDatabase database =
+                Room.databaseBuilder(context, AppDatabase.class, AppDatabase.DATABASE_NAME).build();
 
         return database.newsDao();
     }

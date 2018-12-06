@@ -19,8 +19,10 @@ public class NewsDetailsPresenter extends BasePresenter<NewsDetailsView> {
 
     private int id;
 
-    public void getNews(int id) {
-        if (newsItem == null) {
+    private boolean inProgress = false;
+
+    public void initNews(int id) {
+        if (newsItem == null || newsItem.getId() != id) {
             getDataFromDb(id);
         } else if (view != null) {
             view.setData(newsItem);
@@ -28,6 +30,15 @@ public class NewsDetailsPresenter extends BasePresenter<NewsDetailsView> {
     }
 
     public void delete() {
+        if (inProgress) {
+            return;
+        } else {
+            inProgress = true;
+        }
+        if (view != null) {
+            view.showProgress(true);
+        }
+
         Disposable disposable = repository.deleteItem(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -61,22 +72,27 @@ public class NewsDetailsPresenter extends BasePresenter<NewsDetailsView> {
     }
 
     private void onSuccessDelete() {
+        inProgress = false;
         if (view != null) {
-            view.close(0);
+            view.showProgress(false);
+            view.close();
         }
     }
 
     private void handleGetError(Throwable throwable) {
         Log.e(LOG_TAG, throwable.toString());
         if (view != null) {
-            view.close(R.string.error_get_from_db);
+            view.showErrorMessage(R.string.error_get_from_db);
+            view.close();
         }
     }
 
     private void handleDeleteError(Throwable throwable) {
         Log.e(LOG_TAG, throwable.toString());
+        inProgress = false;
         if (view != null) {
-            view.close(R.string.error_delete_in_db);
+            view.showProgress(false);
+            view.showErrorMessage(R.string.error_delete_in_db);
         }
     }
 }

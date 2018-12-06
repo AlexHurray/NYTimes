@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,9 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     TextView fullTextView;
 
     private int id;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     @NonNull
     @Inject
@@ -100,7 +104,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
         super.onResume();
 
         presenter.bind(this);
-        presenter.getNews(id);
+        presenter.initNews(id);
     }
 
     @Override
@@ -127,12 +131,18 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     }
 
     @Override
-    public void close(@IdRes int errorMessage) {
-        if (errorMessage != 0) {
-            Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
-        }
-
+    public void close() {
         goBack();
+    }
+
+    @Override
+    public void showErrorMessage(@IdRes int errorMessage) {
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showProgress(boolean show) {
+        progressBar.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override

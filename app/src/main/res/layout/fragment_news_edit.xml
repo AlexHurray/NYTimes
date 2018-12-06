@@ -2,74 +2,86 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.newsdetails.NewsDetailsActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_standard">
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@style/EditDetails.Title"
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/et_title"
-            android:text="@string/label_title" />
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_standard">
 
-        <EditText
-            android:id="@+id/et_title"
-            style="@style/EditDetails.Text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            tools:text="Tourist filmed sitting on 5m-long crocodile" />
+            <TextView
+                style="@style/EditDetails.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/et_title"
+                android:text="@string/label_title" />
 
-        <TextView
-            style="@style/EditDetails.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/et_preview_text"
-            android:text="@string/label_preview_text" />
+            <EditText
+                android:id="@+id/et_title"
+                style="@style/EditDetails.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                tools:text="Tourist filmed sitting on 5m-long crocodile" />
 
-        <EditText
-            android:id="@+id/et_preview_text"
-            style="@style/EditDetails.Text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            tools:text="Tourist filmed sitting on 5m-long crocodile" />
+            <TextView
+                style="@style/EditDetails.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/et_preview_text"
+                android:text="@string/label_preview_text" />
 
-        <TextView
-            style="@style/EditDetails.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/et_news_url"
-            android:text="@string/label_news_url" />
+            <EditText
+                android:id="@+id/et_preview_text"
+                style="@style/EditDetails.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                tools:text="Tourist filmed sitting on 5m-long crocodile" />
 
-        <EditText
-            android:id="@+id/et_news_url"
-            style="@style/EditDetails.Text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine|textUri"
-            tools:text="www.nytimes.com" />
+            <TextView
+                style="@style/EditDetails.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/et_news_url"
+                android:text="@string/label_news_url" />
 
-        <TextView
-            style="@style/EditDetails.Title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@id/et_image_url"
-            android:text="@string/label_image_url" />
+            <EditText
+                android:id="@+id/et_news_url"
+                style="@style/EditDetails.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textUri"
+                tools:text="www.nytimes.com" />
 
-        <EditText
-            android:id="@+id/et_image_url"
-            style="@style/EditDetails.Text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine|textUri"
-            tools:text="www.nytimes.com" />
-    </LinearLayout>
+            <TextView
+                style="@style/EditDetails.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/et_image_url"
+                android:text="@string/label_image_url" />
+
+            <EditText
+                android:id="@+id/et_image_url"
+                style="@style/EditDetails.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine|textUri"
+                tools:text="www.nytimes.com" />
+        </LinearLayout>
+
+    </FrameLayout>
 
 </ScrollView>
