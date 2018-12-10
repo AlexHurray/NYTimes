@@ -133,7 +133,8 @@ public class MainActivity extends BaseActivity implements NewsListFragment.NewsL
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() <= 1) {
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        if (backStackEntryCount <= 1) {
             finish();
         } else {
             getSupportFragmentManager().popBackStack();
@@ -143,7 +144,7 @@ public class MainActivity extends BaseActivity implements NewsListFragment.NewsL
             NewsListFragment listFragment = (NewsListFragment) getSupportFragmentManager()
                     .findFragmentByTag(FRAGMENT_LIST_TAG);
 
-            if (detailsFragment != null) {
+            if (detailsFragment != null && backStackEntryCount > 2) {
                 detailsFragment.showTitle();
             } else if (listFragment != null) {
                 listFragment.showTitle();
