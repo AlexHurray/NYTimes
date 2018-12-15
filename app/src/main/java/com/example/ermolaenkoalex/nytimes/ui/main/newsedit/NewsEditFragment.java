@@ -11,18 +11,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseFragment;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
-import javax.inject.Inject;
-
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class NewsEditFragment extends BaseFragment implements NewsEditView {
     private static final String KEY_ID = "KEY_ID";
@@ -42,10 +40,7 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
-    private int id;
-
-    @NonNull
-    @Inject
+    @InjectPresenter
     NewsEditPresenter presenter;
 
     public static NewsEditFragment newInstance(int id) {
@@ -55,6 +50,13 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
         newsEditFragment.setArguments(bundle);
 
         return newsEditFragment;
+    }
+
+    @ProvidePresenter
+    NewsEditPresenter providePresenter() {
+        int id = getArguments().getInt(KEY_ID, 0);
+
+        return new NewsEditPresenter(id);
     }
 
     @Nullable
@@ -68,27 +70,8 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
-
-        id = getArguments().getInt(KEY_ID, 0);
-
-        presenter = ViewModelProviders.of(this).get(NewsEditPresenter.class);
 
         setTitle(getString(R.string.title_edit_news), true);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        presenter.bind(this);
-        presenter.getNews(id);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.unbind();
     }
 
     @Override

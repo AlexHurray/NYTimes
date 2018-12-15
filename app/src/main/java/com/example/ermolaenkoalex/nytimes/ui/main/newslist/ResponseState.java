@@ -15,11 +15,6 @@ public class ResponseState {
     @NonNull
     private List<NewsItem> data = new ArrayList<>();
 
-    ResponseState(boolean loading) {
-        this.loading = loading;
-        this.errorMessageId = R.string.error_data_is_empty;
-    }
-
     ResponseState(boolean loading, @NonNull List<NewsItem> data) {
         this.loading = loading;
 

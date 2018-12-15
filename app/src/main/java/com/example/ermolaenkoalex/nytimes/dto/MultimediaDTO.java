@@ -13,6 +13,12 @@ public class MultimediaDTO {
     @SerializedName("format")
     private MultimediaFormat format;
 
+    public MultimediaDTO(String url, MultimediaType type, MultimediaFormat format) {
+        this.url = url;
+        this.type = type;
+        this.format = format;
+    }
+
     public String getUrl() {
         return url;
     }

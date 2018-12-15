@@ -1,7 +1,6 @@
 package com.example.ermolaenkoalex.nytimes.ui.main.newslist;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.ermolaenkoalex.nytimes.R;
 import com.example.ermolaenkoalex.nytimes.common.BaseFragment;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -40,14 +40,19 @@ public class NewsListFragment extends BaseFragment
     @NonNull
     TextView tvError;
 
-    @NonNull
-    private NewsListPresenter presenter;
+    @InjectPresenter
+    NewsListPresenter presenter;
 
     @NonNull
     private NewsRecyclerAdapter adapter;
 
     @Nullable
     private NewsListFragmentListener listener;
+
+    @ProvidePresenter
+    NewsListPresenter providePresenter() {
+        return new NewsListPresenter();
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -77,7 +82,7 @@ public class NewsListFragment extends BaseFragment
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        presenter = ViewModelProviders.of(this).get(NewsListPresenter.class);
+        //presenter = ViewModelProviders.of(this).get(NewsListPresenter.class);
 
         adapter = new NewsRecyclerAdapter(getContext(), this::onClickNews);
         recyclerView.setAdapter(adapter);
@@ -88,19 +93,6 @@ public class NewsListFragment extends BaseFragment
         refresher.setOnRefreshListener(this);
 
         setTitle(getString(R.string.app_name), false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.bind(this);
-        presenter.getNews(false);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.unbind();
     }
 
     @Override
@@ -115,6 +107,11 @@ public class NewsListFragment extends BaseFragment
             case R.id.action_about:
                 if (listener != null) {
                     listener.onAboutClicked();
+                }
+                return true;
+            case R.id.action_preferences:
+                if (listener != null) {
+                    listener.onPreferencesClicked();
                 }
                 return true;
             default:
@@ -169,5 +166,7 @@ public class NewsListFragment extends BaseFragment
         void onNewsClicked(int id);
 
         void onAboutClicked();
+
+        void onPreferencesClicked();
     }
 }

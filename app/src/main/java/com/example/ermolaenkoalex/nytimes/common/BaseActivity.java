@@ -1,9 +1,8 @@
 package com.example.ermolaenkoalex.nytimes.common;
 
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends MvpAppCompatActivity {
     @Override
     public void onContentChanged() {
         super.onContentChanged();

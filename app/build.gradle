@@ -1,4 +1,23 @@
 apply plugin: 'com.android.application'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = '0.8.2'
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+}
 
 android {
     compileSdkVersion 28
@@ -32,6 +51,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$jetVersion"
     implementation "androidx.cardview:cardview:$jetVersion"
     implementation "androidx.recyclerview:recyclerview:$jetVersion"
+    implementation "androidx.preference:preference:$jetVersion"
     implementation "com.google.android.material:material:$jetVersion"
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
@@ -50,4 +70,16 @@ dependencies {
     implementation "com.github.stephanenicolas.toothpick:smoothie:$toothpickVersion"
     annotationProcessor "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
     implementation "me.relex:circleindicator:2.1.0"
+    implementation "android.arch.work:work-runtime:1.0.0-alpha11"
+    implementation "com.arello-mobile:moxy:$moxyVersion"
+    annotationProcessor "com.arello-mobile:moxy-compiler:$moxyVersion"
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:2.17.0"
+    androidTestImplementation "org.mockito:mockito-android:2.7.22"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation "androidx.test.ext:junit:1.1.0"
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
 }

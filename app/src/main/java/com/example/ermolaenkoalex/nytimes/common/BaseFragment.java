@@ -1,42 +1,51 @@
 package com.example.ermolaenkoalex.nytimes.common;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import butterknife.ButterKnife;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends MvpAppCompatFragment {
 
     private String title;
     private boolean displayHome;
 
     @Nullable
-    private BaseFragmentListener listener;
+    private BaseFragmentListener baseFragmentListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         if (context instanceof BaseFragmentListener) {
-            listener = (BaseFragmentListener) context;
+            baseFragmentListener = (BaseFragmentListener) context;
         }
     }
 
     @Override
     public void onDetach() {
-        listener = null;
+        baseFragmentListener = null;
         super.onDetach();
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+    }
+
     public void showTitle() {
-        if (listener != null) {
-            listener.setTitle(title, displayHome);
+        if (baseFragmentListener != null) {
+            baseFragmentListener.setTitle(title, displayHome);
         }
     }
 
-    public void goBack() {
-        if (listener != null) {
-            listener.goBack();
+    protected void goBack() {
+        if (baseFragmentListener != null) {
+            baseFragmentListener.goBack();
         }
     }
 

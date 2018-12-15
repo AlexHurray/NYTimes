@@ -1,24 +1,20 @@
-package com.example.ermolaenkoalex.nytimes.ui.main.newsedit;
+package com.example.ermolaenkoalex.nytimes.ui.about;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.SingleStateStrategy;
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.example.ermolaenkoalex.nytimes.model.NewsItem;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
-public interface NewsEditView extends MvpView {
+public interface AboutView extends MvpView {
     @StateStrategyType(value = SingleStateStrategy.class)
-    void setData(@NonNull NewsItem newsItem);
+    void setupPhoto(@IdRes int photoId);
 
     @StateStrategyType(value = SkipStrategy.class)
-    void close();
+    void openEmailClient(@NonNull String email, @NonNull String message);
 
     @StateStrategyType(value = SkipStrategy.class)
-    void showErrorMessage(@IdRes int errorMessage);
-
-    @StateStrategyType(value = SkipStrategy.class)
-    void showProgress(boolean show);
+    void openLink(@NonNull String url);
 }

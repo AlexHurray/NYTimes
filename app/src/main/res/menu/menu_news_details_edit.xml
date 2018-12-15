@@ -6,10 +6,4 @@
         android:title="@string/menu_edit"
         app:showAsAction="ifRoom"
         android:icon="@drawable/edit"/>
-
-    <item
-        android:id="@+id/action_delete"
-        android:title="@string/menu_delete"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/delete"/>
 </menu>

@@ -13,6 +13,7 @@ import com.example.ermolaenkoalex.nytimes.ui.main.newslist.NewsListFragment;
 import com.example.ermolaenkoalex.nytimes.ui.main.newslist.Section;
 import com.example.ermolaenkoalex.nytimes.ui.main.newsdetails.NewsDetailsFragment;
 import com.example.ermolaenkoalex.nytimes.ui.main.newsedit.NewsEditFragment;
+import com.example.ermolaenkoalex.nytimes.ui.preferences.PreferencesActivity;
 import com.google.android.material.chip.Chip;
 
 import androidx.annotation.NonNull;
@@ -100,6 +101,11 @@ public class MainActivity extends BaseActivity implements NewsListFragment.NewsL
     @Override
     public void onAboutClicked() {
         AboutActivity.start(this);
+    }
+
+    @Override
+    public void onPreferencesClicked() {
+        PreferencesActivity.start(this);
     }
 
     @Override
