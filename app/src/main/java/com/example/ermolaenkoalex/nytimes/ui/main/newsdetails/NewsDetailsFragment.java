@@ -108,7 +108,6 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        setRetainInstance(true);
         return inflater.inflate(R.layout.fragment_news_details, container, false);
     }
 
@@ -116,6 +115,7 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     public void setData(NewsItem newsItem) {
         setTitle(newsItem.getCategory().toUpperCase(), true);
 
+        id = newsItem.getId();
         RequestOptions imageOption = new RequestOptions()
                 .placeholder(R.drawable.placeholder_image)
                 .fallback(R.drawable.placeholder_image)
@@ -148,13 +148,19 @@ public class NewsDetailsFragment extends BaseFragment implements NewsDetailsView
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (!sharedPreferencesHelper.isEditEnabled()) {
+            menu.findItem(R.id.action_edit).setVisible(false);
+        }
+        if (!sharedPreferencesHelper.isDeleteEnabled()) {
+            menu.findItem(R.id.action_delete).setVisible(false);
+        }
+    }
+
+    @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        if (sharedPreferencesHelper.isEditEnabled()) {
-            inflater.inflate(R.menu.menu_news_details_edit, menu);
-        }
-        if (sharedPreferencesHelper.isDeleteEnabled()) {
-            inflater.inflate(R.menu.menu_news_details_delete, menu);
-        }
+        inflater.inflate(R.menu.menu_news_details, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

@@ -89,7 +89,7 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
         if (newsList.isEmpty() || forceReload) {
             loadDataFromInternetAndSave2Db();
         } else {
-            getViewState().showState(new ResponseState(false, newsList));
+            showState(new ResponseState(false, newsList));
         }
     }
 
@@ -105,7 +105,21 @@ public class NewsListPresenter extends BasePresenter<NewsListView> {
     }
 
     private void showState(@NonNull ResponseState state) {
-        getViewState().showState(state);
+        if (state.isLoading()) {
+            getViewState().showRefresher(true);
+            return;
+        }
+
+        getViewState().showRefresher(false);
+        if (state.hasData()) {
+            getViewState().showData(state.getData());
+
+            if (state.hasError()) {
+                getViewState().showError(state.getErrorMessage(), true);
+            }
+        } else {
+            getViewState().showError(state.getErrorMessage(), false);
+        }
     }
 
     private void handleError(Throwable throwable) {

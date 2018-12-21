@@ -63,7 +63,6 @@ public class NewsEditFragment extends BaseFragment implements NewsEditView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        setRetainInstance(true);
         return inflater.inflate(R.layout.fragment_news_edit, container, false);
     }
 

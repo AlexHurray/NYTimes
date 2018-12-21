@@ -3,39 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresher"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.NewsListActivity">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="@dimen/spacing_small"
+            tools:listitem="@layout/item_news" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:padding="@dimen/spacing_small"
-                tools:listitem="@layout/item_news" />
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/spacing_big"
+            android:gravity="center"
+            android:text="@string/error_network"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tv_error"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_big"
-                android:gravity="center"
-                android:text="@string/error_network"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
-        </FrameLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

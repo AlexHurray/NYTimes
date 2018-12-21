@@ -63,7 +63,7 @@ public class AboutActivity extends BaseActivity implements AboutView {
     }
 
     @OnClick(R.id.icon_fb)
-    void openTelegram() {
+    void openFacebook() {
         presenter.onOpenLink(URL_FB);
     }
 

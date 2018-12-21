@@ -1,10 +1,10 @@
 package com.example.ermolaenkoalex.nytimes.common;
 
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
-public abstract class BaseFragmentActivity extends FragmentActivity {
+public abstract class BaseFragmentActivity extends AppCompatActivity {
     @Override
     public void onContentChanged() {
         super.onContentChanged();
