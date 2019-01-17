@@ -30,6 +30,16 @@ public class ResultDTO {
     @SerializedName("multimedia")
     private List<MultimediaDTO> multimedia;
 
+    public ResultDTO(String section, String subsection, String title, String abstractText, String url, Date publishedDate, List<MultimediaDTO> multimedia) {
+        this.section = section;
+        this.subsection = subsection;
+        this.title = title;
+        this.abstractText = abstractText;
+        this.url = url;
+        this.publishedDate = publishedDate;
+        this.multimedia = multimedia;
+    }
+
     public String getSection() {
         return section;
     }

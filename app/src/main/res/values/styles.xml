@@ -91,6 +91,11 @@
         <item name="android:layout_marginTop">@dimen/spacing_small</item>
     </style>
 
+    <style name="Intro.Title" parent="@style/TextAppearance.AppCompat.Large">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">@dimen/text_size_big</item>
+    </style>
+
     <declare-styleable name="StandardViewStyleTable">
         <attr name="android:layout_marginBottom" />
         <attr name="android:layout_marginEnd" />

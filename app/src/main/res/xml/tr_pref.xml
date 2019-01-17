@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/title_donald_trump_mode">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_edit_news"
+            android:summary="@string/dialog_title_editing_news"
+            android:title="@string/title_editing_news" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_delete_news"
+            android:summary="@string/dialog_title_deleting_news"
+            android:title="@string/title_deleting_news" />
+    </PreferenceCategory>
+</PreferenceScreen>

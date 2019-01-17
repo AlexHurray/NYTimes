@@ -14,7 +14,10 @@
     <dimen name="text_size_body">16sp</dimen>
     <dimen name="text_size_date">12sp</dimen>
     <dimen name="size_image_preview">100dp</dimen>
+    <dimen name="text_size_big">40sp</dimen>
+    <dimen name="size_circle_indicator">24dp</dimen>
 
     <dimen name="size_logo_width">400dp</dimen>
     <dimen name="size_logo_height">300dp</dimen>
+    <dimen name="size_frame_list">300dp</dimen>
 </resources>

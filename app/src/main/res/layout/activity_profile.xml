@@ -11,12 +11,12 @@
         tools:context=".ui.about.AboutActivity">
 
         <ImageView
+            android:id="@+id/iv_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_image"
             android:adjustViewBounds="true"
             android:contentDescription="@string/desc_avatar"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/main_view"

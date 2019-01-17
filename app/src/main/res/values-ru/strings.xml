@@ -14,6 +14,7 @@
     <string name="btn_email_text">отправить на почту</string>
     <string name="copyright">© 2018 Ермолаенко Александр</string>
     <string name="menu_about">Про автора</string>
+    <string name="menu_prefs">Настройки</string>
 
     <string name="desc_avatar">Фото профиля</string>
     <string name="desc_vk">ВКонтакте</string>
@@ -61,4 +62,17 @@
     <string name="label_news_url"><u>Адрес новости:</u></string>
     <string name="label_preview_text"><u>Краткое содержание новости:</u></string>
     <string name="menu_apply">Принять</string>
+    <string name="label_see_more">Полная новость на сайте NYTimes.com</string>
+
+    <string name="service_notification_text">Обновление новостей…</string>
+    <string name="service_notification_title">NY Times</string>
+    <string name="service_notification_channel_desc">Фоновое обновление</string>
+    <string name="service_action_cancel">Отменить</string>
+    <string name="service_result_success">Обновление прошло успешно</string>
+    <string name="service_result_fail">В процессе обновления произошла ошибка</string>
+    <string name="title_deleting_news">Удаление новостей</string>
+    <string name="dialog_title_deleting_news">Разрешить удалять новости?</string>
+    <string name="title_editing_news">Редактирование новостей</string>
+    <string name="dialog_title_editing_news">Разрешить редактировать новости?</string>
+    <string name="title_donald_trump_mode">Режим Дональда Трампа(Борьба с фейк-ньюз)</string>
 </resources>

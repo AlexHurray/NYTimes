@@ -4,7 +4,7 @@ import com.example.ermolaenkoalex.nytimes.api.NewsEndpoint;
 import com.example.ermolaenkoalex.nytimes.dto.ResultDTO;
 import com.example.ermolaenkoalex.nytimes.dto.ResultsDTO;
 import com.example.ermolaenkoalex.nytimes.model.NewsItem;
-import com.example.ermolaenkoalex.nytimes.ui.newslist.Section;
+import com.example.ermolaenkoalex.nytimes.ui.main.newslist.Section;
 import com.example.ermolaenkoalex.nytimes.utils.NewsItemConverter;
 
 import java.util.ArrayList;
@@ -59,21 +59,17 @@ public class NewsRepository {
         if (results == null) {
             return items;
         }
-
         for (ResultDTO resultDTO : results) {
             items.add(NewsItemConverter.resultDTO2NewsItem(resultDTO));
         }
-
         return items;
     }
 
     private Completable saveData(final List<NewsItem> newsList) {
         return Completable.fromCallable((Callable<Void>) () -> {
-
             newsDao.deleteAll();
             NewsItem[] news = newsList.toArray(new NewsItem[newsList.size()]);
             newsDao.insertAll(news);
-
             return null;
         });
     }

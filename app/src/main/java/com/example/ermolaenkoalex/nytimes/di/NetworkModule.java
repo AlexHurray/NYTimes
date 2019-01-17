@@ -1,8 +1,11 @@
 package com.example.ermolaenkoalex.nytimes.di;
 
+import android.content.Context;
+
 import com.example.ermolaenkoalex.nytimes.api.ApiKeyInterceptor;
 import com.example.ermolaenkoalex.nytimes.api.EnumValueConverter;
 import com.example.ermolaenkoalex.nytimes.api.NewsEndpoint;
+import com.example.ermolaenkoalex.nytimes.utils.NetworkUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,12 +19,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import toothpick.config.Module;
 
 public class NetworkModule extends Module {
-    private static final String URL = "http://api.nytimes.com/";
+    private static final String URL = "https://api.nytimes.com/";
     private static final String API_KEY = "dec3395ed3034d1599bac75404d47ed2";
     private static final int TIMEOUT_IN_SECONDS = 2;
 
-    public NetworkModule() {
+    public NetworkModule(Context context) {
         bind(NewsEndpoint.class).toInstance(createNewsEndpoint());
+        bind(NetworkUtils.class).toInstance(new NetworkUtils(context));
     }
 
     @NonNull

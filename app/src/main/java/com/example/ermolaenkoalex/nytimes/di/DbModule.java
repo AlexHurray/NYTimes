@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.ermolaenkoalex.nytimes.db.AppDatabase;
 import com.example.ermolaenkoalex.nytimes.db.NewsDao;
+import com.example.ermolaenkoalex.nytimes.utils.SharedPreferencesHelper;
 
 import androidx.annotation.NonNull;
 import androidx.room.Room;
@@ -17,6 +18,7 @@ public class DbModule extends Module {
     public DbModule(Context context) {
         this.context = context;
         bind(NewsDao.class).toInstance(provideDao());
+        bind(SharedPreferencesHelper.class).toInstance(new SharedPreferencesHelper(context));
     }
 
     @NonNull

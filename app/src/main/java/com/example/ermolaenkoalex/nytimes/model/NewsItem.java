@@ -3,6 +3,7 @@ package com.example.ermolaenkoalex.nytimes.model;
 import com.example.ermolaenkoalex.nytimes.db.DateConverter;
 
 import java.util.Date;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -125,5 +126,22 @@ public class NewsItem {
 
     public void setHasUsCategory(boolean hasUsCategory) {
         this.hasUsCategory = hasUsCategory;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NewsItem newsItem = (NewsItem) o;
+        return Objects.equals(title, newsItem.title) &&
+                Objects.equals(imageUrl, newsItem.imageUrl) &&
+                Objects.equals(previewText, newsItem.previewText) &&
+                Objects.equals(itemUrl, newsItem.itemUrl);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(title, imageUrl, previewText, itemUrl);
     }
 }

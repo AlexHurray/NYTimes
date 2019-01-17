@@ -1,7 +1,7 @@
 package com.example.ermolaenkoalex.nytimes.api;
 
 import com.example.ermolaenkoalex.nytimes.dto.ResultsDTO;
-import com.example.ermolaenkoalex.nytimes.ui.newslist.Section;
+import com.example.ermolaenkoalex.nytimes.ui.main.newslist.Section;
 
 import androidx.annotation.NonNull;
 import io.reactivex.Single;

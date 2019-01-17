@@ -13,6 +13,7 @@
     <string name="btn_email_text">email</string>
     <string name="copyright">© 2018 Ermolaenko Alexandr</string>
     <string name="menu_about">About</string>
+    <string name="menu_prefs">Preferences</string>
 
     <string name="desc_avatar">Profile foto</string>
     <string name="desc_vk">VKontakte</string>
@@ -62,5 +63,21 @@
     <string name="label_news_url"><u>News URL:</u></string>
     <string name="label_preview_text"><u>Preview text:</u></string>
     <string name="menu_apply">Apply</string>
+    <string name="text_welcome">Welcome!</string>
+    <string name="btn_skip">Skip</string>
+    <string name="label_see_more">See more on NYTimes.com</string>
 
+    <string name="service_notification_text">News updating…</string>
+    <string name="service_notification_title">NY Times</string>
+    <string name="service_notification_channel_desc">Background update</string>
+    <string name="service_action_cancel">Cancel</string>
+    <string name="service_result_success">Successful update</string>
+    <string name="service_result_fail">An error occurred during the update</string>
+    <string name="pref_key_edit_news">edit_news</string>
+    <string name="pref_key_delete_news">delete_news</string>
+    <string name="title_deleting_news">Deleting news</string>
+    <string name="dialog_title_deleting_news">Enable deleting news ability?</string>
+    <string name="title_editing_news">Editing news</string>
+    <string name="dialog_title_editing_news">Enable editing news ability?</string>
+    <string name="title_donald_trump_mode">Donald Trump mode(STOP FAKE NEWS)</string>
 </resources>
